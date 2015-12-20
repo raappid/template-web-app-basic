@@ -1,0 +1,41 @@
+{
+  "author": {
+    "name": ""
+  },
+  "dependencies": {},
+  "description": "",
+  "devDependencies": {
+    "minimist": "^1.2.0",
+    "typescript": "^1.7"
+  },
+  "engines": {
+    "node": ">=5.0.0"
+  },
+  "homepage": "",
+  "licenses": [],
+  "name": "template-web-app-basic",
+  "optionalDependencies": {},
+  "readme": "",
+  "readmeFilename": "",
+  "repository": {
+    "url": "",
+    "type": ""
+  },
+  "scripts": {
+    "build": "node scripts/build.js",
+    "build-release": "npm run build release",
+    "clean": "node scripts/clean.js",
+    "coverage": "node scripts/coverage.js",
+    "deploy": "node scripts/deploy.js",
+    "install-deps": "node scripts/install.js",
+    "release-major": "node scripts/release.js major",
+    "release-minor": "node scripts/release.js minor",
+    "release-patch": "node scripts/release.js patch",
+    "test": "node scripts/test.js"
+  },
+  "version": "0.0.1",
+  "bugs": {
+    "url": ""
+  },
+  "keywords": []
+}
