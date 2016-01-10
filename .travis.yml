@@ -4,7 +4,7 @@ node_js:
   - "5.0.0"
   - "5.1.0"
 install:
-  - npm install
+  - npm install-deps
 after_script:
   - npm run coverage
 git:
