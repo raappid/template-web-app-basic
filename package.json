@@ -5,6 +5,7 @@
   "dependencies": {},
   "description": "",
   "devDependencies": {
+    "cross-spawn-async": "^2.1.6",
     "minimist": "^1.2.0",
     "typescript": "^1.7"
   },
@@ -27,7 +28,7 @@
     "clean": "node scripts/clean.js",
     "coverage": "node scripts/coverage.js",
     "deploy": "node scripts/deploy.js",
-    "install-deps": "node scripts/install.js",
+    "postinstall": "node scripts/install-other-dependencies.js",
     "release-major": "node scripts/release.js major",
     "release-minor": "node scripts/release.js minor",
     "release-patch": "node scripts/release.js patch",
