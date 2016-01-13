@@ -1,12 +1,25 @@
 {
+  "name": "template-web-app-basic",
+  "description": "",
   "author": {
     "name": ""
   },
-  "dependencies": {},
-  "description": "",
+  "system": {
+    "npmAlgorithm": "flat"
+  },
+  "dependencies": {
+    "bluebird": "^3.1.1",
+    "eventemitter3": "^1.1.1",
+    "steal": "^0.13.0-pre.1"
+  },
   "devDependencies": {
+    "chai": "^3.4.1",
     "cross-spawn-async": "^2.1.6",
     "minimist": "^1.2.0",
+    "mocha": "^2.3.4",
+    "sinon": "^1.17.2",
+    "sinon-chai": "^2.8.0",
+    "tsd": "^0.6.5",
     "typescript": "^1.7"
   },
   "engines": {
@@ -14,7 +27,6 @@
   },
   "homepage": "",
   "licenses": [],
-  "name": "template-web-app-basic",
   "optionalDependencies": {},
   "readme": "",
   "readmeFilename": "",

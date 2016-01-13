@@ -2,10 +2,10 @@ node_modules
 .idea
 **/*.iml
 .DS_STORE
-src/**/*.js
+app/**/*.js
 test/**/*.js
 **/*.map
-src/typings
+app/typings
 coverage
 dist
 npm-debug.log
