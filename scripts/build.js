@@ -21,7 +21,7 @@ function build(isRelease){
     var cmd = "tsc";
 
     if(isRelease)
-        cmd = cmd + " -p src --outDir dist";
+        cmd = cmd + " -p app --outDir dist";
 
     util.series(["npm run clean",cmd], function (err) {
 

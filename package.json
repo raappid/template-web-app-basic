@@ -13,6 +13,7 @@
     "steal": "^0.13.0-pre.1"
   },
   "devDependencies": {
+    "del": "^2.0.2",
     "chai": "^3.4.1",
     "cross-spawn-async": "^2.1.6",
     "minimist": "^1.2.0",

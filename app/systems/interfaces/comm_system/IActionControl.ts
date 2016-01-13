@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/tsd.d.ts" />
 
 
-import {Promise} from "when"
+import Promise = require('bluebird');
 
 export interface IActionControl
 {
