@@ -260,7 +260,7 @@ describe('action-control', function() {
             expect(result).toEqual(jasmine.any(Promise));
 
             result.then(null,(error)=>{
-                expect(result).toEqual(jasmine.any(Error));
+                expect(error).toEqual(jasmine.any(Error));
                 expect(error.message).toEqual("yay");
                 done();
             })

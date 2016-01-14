@@ -38,13 +38,13 @@ class ActionControl implements IActionControl
     registerAction(actionName:string, handler:Function,context?:any):void {
 
         if(!isValidActionOrEventName(actionName))
-            throw new TypeError(Errors.ERROR_REGISTERING_ACTION_NAME_NOT_TYPE_STRING);
+            throw new Error(Errors.ERROR_REGISTERING_ACTION_NAME_NOT_TYPE_STRING);
 
         if(handler === undefined || handler === null)
-            throw new TypeError(Errors.ERROR_REGISTERING_ACTION_NO_HANDLER_GIVEN);
+            throw new Error(Errors.ERROR_REGISTERING_ACTION_NO_HANDLER_GIVEN);
 
         if(typeof handler !== 'function')
-            throw new TypeError(Errors.ERROR_REGISTERING_ACTION_HANDLER_NOT_TYPE_FUNCTION);
+            throw new Error(Errors.ERROR_REGISTERING_ACTION_HANDLER_NOT_TYPE_FUNCTION);
 
         let handler1:HandlerObject = this.getHandler(actionName);
 
@@ -68,7 +68,18 @@ class ActionControl implements IActionControl
 
         var handler:Function = handler1.handler;
         var context:any = handler1.context;
-        return Promise.resolve(handler.call(context,...argArray));
+
+        return new Promise((resolve,reject)=>{
+            try {
+
+                resolve(handler.call(context,...argArray));
+            }
+            catch (error)
+            {
+               reject(error);
+            }
+        })
+
     }
 
 

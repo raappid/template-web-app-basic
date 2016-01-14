@@ -3,7 +3,7 @@
 var util = require('./util');
 
 
-util.series(["npm run build","karma --no-auto-watch start"], function(err){
+util.series(["npm run build","karma start --single-run --no-auto-watch --browsers Firefox"], function(err){
 
     if(err)
     {
