@@ -29,7 +29,6 @@
     "karma-jasmine-html-reporter": "^0.2.0",
     "karma-steal-npm": "^0.1.3",
     "minimist": "^1.2.0",
-    "phantomjs": "^1.9.19",
     "tsd": "^0.6.5",
     "typescript": "^1.7"
   },
