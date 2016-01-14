@@ -5,21 +5,32 @@
     "name": ""
   },
   "system": {
+    "main": "src/main",
+    "npmIgnore": [
+      "devDependencies"
+    ],
     "npmAlgorithm": "flat"
   },
   "dependencies": {
     "bluebird": "^3.1.1",
+    "esprima-fb": "^15001.1001.0-dev-harmony-fb",
     "eventemitter3": "^1.1.1",
     "steal": "^0.13.0-pre.1"
   },
   "devDependencies": {
-    "del": "^2.0.2",
     "chai": "^3.4.1",
     "cross-spawn-async": "^2.1.6",
+    "del": "^2.0.2",
+    "jasmine": "^2.4.1",
+    "karma": "^0.13.19",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-coverage": "^0.5.3",
+    "karma-jasmine": "^0.3.6",
+    "karma-mocha": "^0.2.1",
+    "karma-sinon": "^1.0.4",
+    "karma-sinon-chai": "^1.1.0",
     "minimist": "^1.2.0",
-    "mocha": "^2.3.4",
-    "sinon": "^1.17.2",
-    "sinon-chai": "^2.8.0",
     "tsd": "^0.6.5",
     "typescript": "^1.7"
   },
