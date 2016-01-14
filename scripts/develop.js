@@ -18,6 +18,22 @@ util.exec("npm run build",function(){
 
     //watch for html file changes
     myWatch(["**/*.html"],reload);
+
+    myWatch(["src/**/*.js"],reload);
+
+    myWatch(["**/*.scss"],function(filePath){
+        util.exec("npm run build sass",function(err){
+            if(!err)
+            {
+                reload(filePath);
+            }
+            else
+            {
+                console.log(err);
+            }
+        })
+    });
+
 });
 
 

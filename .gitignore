@@ -3,6 +3,7 @@ node_modules
 **/*.iml
 .DS_STORE
 src/**/*.js
+src/**/*.css
 test/**/*.js
 **/*.map
 coverage
