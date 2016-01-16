@@ -70,5 +70,5 @@ export function close()
 
 if(env !== "development")
 {
-    start(process.env.$PORT);
+    start(process.env.PORT);
 }
