@@ -22,6 +22,7 @@ if(argv._ && argv._.length > 0) //look release build
             require("child_process").exec(cmd,function(error,stdout,stdbffr){
 
                 version = stdout.toString("utf8");
+                version.replace(/(\r\n|\n|\r)/gm,"");
 
                 if(error)
                 {
@@ -31,6 +32,10 @@ if(argv._ && argv._.length > 0) //look release build
                 else
                 {
                     util.series([
+
+                        ["git add -A","Adding all the changed files after versioning"],
+
+                        ['git commit -m "release"',"all changes committed..."],
 
                         ["git push","Pushed all file changes to remote repo.."],
 
@@ -52,8 +57,10 @@ if(argv._ && argv._.length > 0) //look release build
 
                         if(err)
                         {
-                            console.log(err);
-                            process.exit(1);
+                            util.exec("git branch -D release",function(error){
+                                console.log(err);
+                                process.exit(1);
+                            })
                         }
 
                         process.exit(0);
