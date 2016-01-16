@@ -39,3 +39,67 @@ exports.series = function(cmds, cb){
     };
     execNext();
 };
+
+exports.callTasksInSeries = function(tasks,cb)
+{
+    var callNext = function(){
+
+        var task = tasks.shift();
+
+        if(task.fn)
+        {
+            if(!task.args)
+                task.args = [];
+
+            task.args.unshift(taskDone);
+            task.fn.apply(null,task.args);
+
+            function taskDone(err){
+                if(err)
+                {
+                    cb(err)
+                }
+                else
+                {
+                    if(tasks.length) callNext();
+                    else cb(null);
+                }
+            }
+        }
+        else
+        {
+            if(tasks.length) callNext();
+            else cb(null);
+
+        }
+
+    };
+
+    callNext();
+};
+
+
+
+exports.finishTask = function finishTask(cb,error,doExitOnNoCallBack)
+{
+    if(cb)
+    {
+        cb(error)
+    }
+    else
+    {
+        if(error)
+        {
+            console.log(error);
+
+        }
+
+        if(doExitOnNoCallBack)
+        {
+            if(error)
+                process.exit(1);
+            else
+                process.exit(0);
+        }
+    }
+};

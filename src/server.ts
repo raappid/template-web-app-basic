@@ -6,11 +6,11 @@ import http = require('http');
 
 var connect = require('connect');
 var serveStatic = require('serve-static');
+
+
+
 var server;
-
 var env = process.env.NODE_ENV || "development";
-
-
 var staticPath:string = path.resolve("./");
 
 export function start(port?:number,plugins?:Array<any>):void
@@ -38,7 +38,8 @@ export function start(port?:number,plugins?:Array<any>):void
     }
     else
     {
-        app.use(serveStatic(staticPath));
+        staticPath = path.resolve("./dist/src/client");
+        app.use(serveStatic(staticPath))
     }
 
     server = http.createServer(app).listen(httpPort);
@@ -57,6 +58,8 @@ export function start(port?:number,plugins?:Array<any>):void
         });
     });
 
+    console.log("Server started");
+
     return server;
 }
 
@@ -65,18 +68,7 @@ export function close()
     server.close();
 }
 
-var argv = process.argv;
-
-if(argv && argv.length > 2)
+if(env !== "development")
 {
-    var envType:string = argv[2];
-
-    if(envType === "production")
-    {
-       start(process.env.$PORT);
-    }
-    else
-    {
-        start(3000)
-    }
+    start(process.env.$PORT);
 }

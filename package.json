@@ -5,9 +5,10 @@
     "name": ""
   },
   "system": {
-    "main": "src/main",
     "npmIgnore": [
-      "devDependencies"
+      "devDependencies",
+      "connect",
+      "serve-static"
     ],
     "npmAlgorithm": "flat"
   },
@@ -22,8 +23,10 @@
   "devDependencies": {
     "chokidar": "^1.4.2",
     "connect-livereload": "^0.5.4",
+    "cpy": "^4.0.0",
     "cross-spawn-async": "^2.1.6",
     "del": "^2.0.2",
+    "htmlprocessor": "^0.2.0",
     "jasmine": "^2.4.1",
     "karma": "^0.13.19",
     "karma-chrome-launcher": "^0.2.2",
@@ -34,6 +37,8 @@
     "karma-steal-npm": "^0.1.3",
     "minimist": "^1.2.0",
     "node-sass": "^3.4.2",
+    "preprocess": "^3.0.2",
+    "steal-tools": "^0.13.2",
     "tiny-lr": "^0.2.1",
     "tsd": "^0.6.5",
     "typescript": "^1.7"
@@ -53,8 +58,6 @@
   "scripts": {
     "develop": "node scripts/develop.js",
     "build": "node scripts/build.js",
-    "build-ts": "node scripts/build.js ts",
-    "build-sass": "node scripts/build.js sass",
     "build-release": "npm run build release",
     "clean": "node scripts/clean.js",
     "coverage": "node scripts/coverage.js",

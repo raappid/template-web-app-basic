@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <title>My Title</title>
 
-    <link rel="stylesheet" type="text/css" href="../../src/client/systems/view_system/styles/main.css">
-    <script src="../../node_modules/steal/steal.js"></script>
+    <!-- @if BUILD='release' -->
+        <script src="main.js"></script>
+        <link rel="stylesheet" type="text/css" href="main.css">
+    <!-- @endif -->
+
+    <!-- @exclude -->
+        <link rel="stylesheet" type="text/css" href="../../src/client/systems/view_system/styles/main.css">
+        <script src="../../node_modules/steal/steal.js"></script>
+    <!-- @endexclude -->
+
 </head>
 <body>
 <h1>Hello world !!</h1>

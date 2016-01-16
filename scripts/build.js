@@ -5,25 +5,16 @@ var sass = require('node-sass');
 var path = require("path");
 var fs = require("fs-extra");
 
-if(argv._ && argv._.length > 0) //look release build
+var cpy = require("cpy");
+var pp = require('preprocess');
+
+
+if(argv._ && argv._.length > 0) //look for release build
 {
     var subCommand = argv._[0].toLowerCase();
-    switch(subCommand)
+    if(subCommand === "release")
     {
-        case "ts":
-        {
-           buildTypescript();
-           break;
-        }
-        case "sass":
-        {
-            buildSASS();
-            break;
-        }
-        case "release":
-        {
-            buildRelease();
-        }
+        buildRelease();
     }
 
 }
@@ -36,39 +27,149 @@ else // will build both sass and typescript in the src directory
             console.log(err);
             process.exit(1);
         }
-        buildTypescript();
-        buildSASS();
+
+        util.callTasksInSeries([
+            {fn:buildTypescript},
+            {fn:buildSASS}
+        ],function(err){
+
+            util.finishTask(null,err,true);
+        })
     });
 
 }
 
-function buildSASS(isRelease) {
+function buildSASS(cb,isRelease,outDir) {
 
-    var result = sass.renderSync({
-        file: path.resolve("./src/client/systems/view_system/styles/main.scss")
+    var mainSassFilePath = path.resolve("./src/client/systems/view_system/styles/main.scss");
+    var outFilePath = path.resolve("./src/client/systems/view_system/styles/main.css");
+
+    if(isRelease)
+    {
+        fs.ensureDir(outDir+"/src/client/");
+        outFilePath = outDir+"/src/client/main.css";
+    }
+
+
+    var result = sass.render({
+        file: mainSassFilePath
+    },function(error, result){
+
+        if(!error)
+        {
+            fs.writeFile(outFilePath,result.css,"utf8",function(err){
+
+                util.finishTask(cb,err,true);
+
+            });
+        }
+        else
+        {
+            util.finishTask(cb,err,true);
+        }
+
     });
 
-    fs.writeFileSync(path.resolve("./src/client/systems/view_system/styles/main.css"), result.css,"utf8");
 }
 
-function buildTypescript(isRelease){
+function buildTypescript(cb,isRelease){
 
     var cmd = "tsc";
 
     if(isRelease)
-        cmd = cmd + " -p src --outDir dist";
+        cmd = cmd + " -p src";
 
     util.exec(cmd, function (err) {
 
-        if(err)
-        {
-            console.log(err);
-            process.exit(1);
-        }
+        util.finishTask(cb,err,true);
     });
+
+}
+
+function bundleFiles(cb,distDir){
+
+
+    var stealTools = require("steal-tools");
+
+    stealTools.build({
+            main: "src/client/main",
+            bundlesPath:distDir,
+            config: path.resolve("./")+"/package.json!npm"
+        },
+        {
+            minify: true,
+            debug: false,
+            bundleSteal: true
+        }
+    ).then(function(){
+
+        util.finishTask(cb);
+
+    },function(err){
+        util.finishTask(cb,err);
+    })
+}
+
+function copyIndexHtmlFile(cb,distDir){
+
+    var indexFile = path.resolve("./src/client/index.html");
+    var dest = distDir+"/src/client/index.html";
+    pp.preprocessFile(indexFile,dest,{BUILD : "release"},function(err){
+
+        util.finishTask(cb,err)
+    })
+
+}
+
+function copyAssetsAndServerFiles(cb,distDir){
+
+    cpy(["src/server.js",
+        "!src/systems/**/*.js",
+        "!src/systems/**/*.ts",
+        "!src/**/*.scss"],distDir,{cwd:process.cwd(),parents: true, nodir: true}).then(function(){
+
+        util.finishTask(cb)
+
+    },function(err){
+
+        util.finishTask(cb,err)
+    })
 
 }
 
 function buildRelease(){
 
+    util.exec("npm run clean", function (err) {
+
+        var distDir = path.resolve("./dist");
+
+
+        util.callTasksInSeries(
+            [
+                {fn:buildTypescript,
+                    args:[true]
+                },
+
+                {fn:buildSASS,
+                    args:[true,distDir]
+                },
+
+                {fn:bundleFiles,
+                    args:[distDir]
+                },
+
+                {fn:copyAssetsAndServerFiles,
+                    args:[distDir]
+                },
+
+                {fn:copyIndexHtmlFile,
+                    args:[distDir]
+                }
+            ]
+            ,function(err){
+
+                util.finishTask(null,err,true);
+            });
+
+    });
 }
