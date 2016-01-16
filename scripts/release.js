@@ -5,34 +5,67 @@ var argv = require('minimist')(process.argv.slice(2));
 if(argv._ && argv._.length > 0) //look release build
 {
 
-    var cmd = "npm version " + argv._[0];
+    var version;
+    var cmd = "npm version --no-git-tag-version " + argv._[0];
 
     util.series(["npm test",
 
-        cmd,
-
-        ["git push","Pushed all file changes to remote repo.."],
-
-        ["git checkout -b release","Created local 'release' branch..."],
-
-        "npm run build-release",
-
-        ["git add --f dist","dist folder added to release branch..."],
-
-        ['git commit -m "release"',"all changes committed..."],
-
-        ['git push --tags',"all tags pushed..."]
-
-        ],function(err){
+        "npm run build-release"],function(err){
 
         if(err)
         {
             console.log(err);
             process.exit(1);
         }
+        else
+        {
+            require("child_process").exec(cmd,function(error,stdout,stdbffr){
 
-        process.exit(0);
+                version = stdout.toString("utf8");
+
+                if(error)
+                {
+                    console.log(err);
+                    process.exit(1);
+                }
+                else
+                {
+                    util.series([
+
+                        ["git push","Pushed all file changes to remote repo.."],
+
+                        ["git checkout -b release","Created local 'release' branch..."],
+
+                        ["git add --f dist","dist folder added to release branch..."],
+
+                        ['git commit -m "release"',"all changes committed..."],
+
+                        ['git tag ' +version,"created version tag..."],
+
+                        ['git push --tags', "all tags pushed..."],
+
+                        ['git checkout master',"checked out master branch.."],
+
+                        ['git branch -D release',"release branch deleted..release Done!!"]
+
+                    ],function(err){
+
+                        if(err)
+                        {
+                            console.log(err);
+                            process.exit(1);
+                        }
+
+                        process.exit(0);
+                    });
+                }
+
+            });
+        }
     });
+
+
+
 
 }
 else
