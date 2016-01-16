@@ -21,7 +21,11 @@ if(argv._ && argv._.length > 0) //look release build
 
         ['git commit -m "release"',"all changes committed..."],
 
-        ['git push --tags',"all tags pushed and release done.."],
+        ['git push --tags',"all tags pushed..."],
+
+        ['git checkout master',"checked out master branch.."],
+
+        ['git branch -D release',"release branch deleted..release Done!!"],
 
         ],function(err){
 
