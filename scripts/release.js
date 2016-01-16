@@ -15,17 +15,7 @@ if(argv._ && argv._.length > 0) //look release build
 
         ["git push","Pushed all file changes to remote repo.."],
 
-        ["git checkout -b release","Created local 'release' branch..."],
-
-        ["git add --f dist","dist folder added to release branch..."],
-
-        ['git commit -m "release"',"all changes committed..."],
-
-        ['git push --tags',"all tags pushed..."],
-
-        ['git checkout master',"checked out master branch.."],
-
-        ['git branch -D release',"release branch deleted..release Done!!"],
+        ['git push --tags',"all tags pushed..."]
 
         ],function(err){
 

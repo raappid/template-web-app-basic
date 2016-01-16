@@ -63,6 +63,7 @@
     "coverage": "node scripts/coverage.js",
     "deploy": "node scripts/deploy.js",
     "install-deps": "npm install && node scripts/install-other-dependencies.js",
+    "postinstall":"node scripts/post-install.js",
     "release-major": "node scripts/release.js major",
     "release-minor": "node scripts/release.js minor",
     "release-patch": "node scripts/release.js patch",
