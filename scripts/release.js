@@ -9,11 +9,17 @@ if(argv._ && argv._.length > 0) //look release build
 
     util.series(["npm test",
 
-        "npm run build-release",
-
         cmd,
 
         ["git push","Pushed all file changes to remote repo.."],
+
+        ["git checkout -b release","Created local 'release' branch..."],
+
+        "npm run build-release",
+
+        ["git add --f dist","dist folder added to release branch..."],
+
+        ['git commit -m "release"',"all changes committed..."],
 
         ['git push --tags',"all tags pushed..."]
 
