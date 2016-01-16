@@ -1,5 +1,5 @@
 
-/// <reference path="../../../../typings/tsd.d.ts" />
+/// <reference path="../../../../../typings/tsd.d.ts" />
 
 import myAssistant = require("../assistants/my-assistant");
 import Promise  = require("bluebird");

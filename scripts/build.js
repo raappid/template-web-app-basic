@@ -45,10 +45,10 @@ else // will build both sass and typescript in the src directory
 function buildSASS(isRelease) {
 
     var result = sass.renderSync({
-        file: path.resolve("./src/systems/view_system/styles/main.scss")
+        file: path.resolve("./src/client/systems/view_system/styles/main.scss")
     });
 
-    fs.writeFileSync(path.resolve("./src/systems/view_system/styles/main.css"), result.css,"utf8");
+    fs.writeFileSync(path.resolve("./src/client/systems/view_system/styles/main.css"), result.css,"utf8");
 }
 
 function buildTypescript(isRelease){

@@ -1,11 +1,11 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 
 
-import actionControl1 = require("../../../src/systems/comm_system/action-control");
+import actionControl1 = require("../../../src/client/systems/comm_system/action-control");
 import Promise = require('bluebird');
 import any = jasmine.any;
 import Spy = jasmine.Spy;
-import {Errors} from "../../../src/systems/comm_system/index";
+import {Errors} from "../../../src/client/systems/comm_system/index";
 
 describe('action-control', function() {
     

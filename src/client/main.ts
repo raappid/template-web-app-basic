@@ -1,4 +1,6 @@
 
+/// <reference path="../../typings/tsd.d.ts" />
+
 import {actionControl,Action,Event} from "./systems/index"
 
 actionControl.subscribe(Event.HI_HELLO,(result:string)=>{

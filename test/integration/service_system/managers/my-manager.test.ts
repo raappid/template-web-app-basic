@@ -1,7 +1,7 @@
 /// <reference path="../../../../typings/tsd.d.ts" />
 
-import myAssistant = require("../../../../src/systems/service_system/assistants/my-assistant");
-import myManager = require("../../../../src/systems/service_system/managers/my-manager");
+import myAssistant = require("../../../../src/client/systems/service_system/assistants/my-assistant");
+import myManager = require("../../../../src/client/systems/service_system/managers/my-manager");
 
 describe('my-manager Integration Test cases', () => {
 

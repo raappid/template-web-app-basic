@@ -1,8 +1,8 @@
 /// <reference path="../../../../typings/tsd.d.ts" />
 
-import helloService = require("../../../../src/systems/service_system/services/hello-service");
-import hiService = require("../../../../src/systems/service_system/services/hi-service");
-import myAssistant = require("../../../../src/systems/service_system/assistants/my-assistant");
+import helloService = require("../../../../src/client/systems/service_system/services/hello-service");
+import hiService = require("../../../../src/client/systems/service_system/services/hi-service");
+import myAssistant = require("../../../../src/client/systems/service_system/assistants/my-assistant");
 import Promise = require("bluebird");
 import Spy = jasmine.Spy;
 

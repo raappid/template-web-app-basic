@@ -1,27 +1,24 @@
 
-
+path = require("path");
 var util = require('./util');
-var gaze = require('gaze');
-var connect = require('connect');
-var serveStatic = require('serve-static');
-var http = require('http');
-var path = require('path');
 var tinylr = require('tiny-lr')();
 var chokidar = require('chokidar');
 var tinylrPort = 2000;
 var httpPort = 3000;
-var app;
+
+
+var server;
 
 util.exec("npm run build",function(){
 
     serve();
 
     //watch for html file changes
-    myWatch(["**/*.html"],reload);
+    myWatch(["src/**/*.html"],reload);
 
     myWatch(["src/**/*.js"],reload);
 
-    myWatch(["**/*.scss"],function(filePath){
+    myWatch(["src/**/*.scss"],function(filePath){
         util.exec("npm run build sass",function(err){
             if(!err)
             {
@@ -39,17 +36,19 @@ util.exec("npm run build",function(){
 
 function serve(){
 
-    app = connect();
+    server = require("../src/server");
 
-    app.use(require('connect-livereload')({
+
+    var reloadPlugin = require('connect-livereload')({
         port: tinylrPort,
         serverPort: httpPort
-    }));
+    });
 
-    app.use(serveStatic(path.resolve("./")));
 
     tinylr.listen(tinylrPort);
-    http.createServer(app).listen(httpPort);
+
+    server.start(httpPort,[reloadPlugin]);
+
 
     console.log('Server running at http://localhost:' + httpPort);
 }
@@ -63,10 +62,44 @@ function reload(filePath){
 }
 
 function myWatch(filePaths,cb){
-    console.log(filePaths);
     chokidar.watch(filePaths).on('change', cb);
 }
 
-process.on("exit",function(){
-    http.close();
+function exitHandler(options, err) {
+    if (options.cleanup)
+    {
+        server.close();
+    }
+    if (err)
+        console.log(err.stack);
+
+    if (options.exit)
+    {
+        if(options.exitCode)
+            process.exit(options.exitCode);
+        else
+            process.exit(0);
+
+    }
+
+}
+
+process.on('exit', function(code){
+    exitHandler.bind(null,{cleanup:true,exitCode:code});
 });
+
+//catches ctrl+c event
+process.on('SIGINT', function(){
+    exitHandler.bind(null, {exit:true,exitCode:1});
+});
+
+process.on('SIGTERM', function(){
+    exitHandler.bind(null, {exit:true,exitCode:1});
+});
+
+process.on('SIGHUP', function(){
+    exitHandler.bind(null, {exit:true,exitCode:1});
+});
+
+//catches uncaught exceptions
+process.on('uncaughtException', exitHandler.bind(null, {exit:true,exitCode:1}));
