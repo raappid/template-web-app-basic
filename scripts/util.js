@@ -9,7 +9,11 @@
 exports.exec = function(cmd, cb){
     // this would be way easier on a shell/bash script :P
     var spawn = require('cross-spawn-async');
-    var parts = cmd.split(/\s+/g);
+
+    var parts = [].concat.apply([], cmd.split('"').map(function(v,i){
+        return i%2 ? '"'+v+'"' : v.split(' ')
+    })).filter(Boolean);
+
     var p = spawn(parts[0], parts.slice(1), {cwd:process.cwd(),stdio: 'inherit'});
 
     p.on('exit', function(code){
@@ -28,12 +32,23 @@ exports.exec = function(cmd, cb){
 // this could be replaced by any flow control lib
 exports.series = function(cmds, cb){
     var execNext = function(){
-        exports.exec(cmds.shift(), function(err){
+
+        var cmd = cmds.shift();
+        var doneMessage;
+        if(Array.isArray(cmd))
+        {
+            cmd = cmd[0];
+            doneMessage = cmd[1];
+        }
+        exports.exec(cmd, function(err){
             if (err) {
                 cb(err);
             } else {
                 if (cmds.length) execNext();
-                else cb(null);
+                else{
+                    if(doneMessage) console.log(doneMessage);
+                    cb(null);
+                }
             }
         });
     };
