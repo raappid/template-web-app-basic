@@ -21,8 +21,9 @@ if(argv._ && argv._.length > 0) //look release build
         {
             require("child_process").exec(cmd,function(error,stdout,stdbffr){
 
-                version = stdout.toString("utf8");
-                version.replace(/(\r\n|\n|\r)/gm,"");
+                var version = v+require("./package.json").version;
+                console.log(version);
+
 
                 if(error)
                 {
@@ -57,7 +58,7 @@ if(argv._ && argv._.length > 0) //look release build
 
                         if(err)
                         {
-                            util.exec("git branch -D release",function(error){
+                            util.series(["git checkout master","git branch -D release"],function(error){
                                 console.log(err);
                                 process.exit(1);
                             })
