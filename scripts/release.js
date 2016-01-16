@@ -1,6 +1,8 @@
 
 var util = require('./util');
 var argv = require('minimist')(process.argv.slice(2));
+var fs = require("fs-extra");
+var path = require("path");
 
 if(argv._ && argv._.length > 0) //look release build
 {
@@ -21,8 +23,10 @@ if(argv._ && argv._.length > 0) //look release build
         {
             require("child_process").exec(cmd,function(error,stdout,stdbffr){
 
-                var version = v+require("./package.json").version;
-                console.log(version);
+                var version = JSON.parse(fs.readFileSync(path.resolve("./package.json"), 'utf8')).version;
+                var tagName = "v"+version;
+
+                console.log(tagName);
 
 
                 if(error)
@@ -46,7 +50,7 @@ if(argv._ && argv._.length > 0) //look release build
 
                         ['git commit -m "release"',"all changes committed..."],
 
-                        ['git tag ' +version,"created version tag..."],
+                        ["git tag " + tagName,"created version tag..."],
 
                         ['git push --tags', "all tags pushed..."],
 
