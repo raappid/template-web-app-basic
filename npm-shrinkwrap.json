@@ -1,6 +1,6 @@
 {
   "name": "template-web-app-basic",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "dependencies": {
     "abbrev": {
       "version": "1.0.7",
