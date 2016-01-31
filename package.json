@@ -72,7 +72,7 @@
     "release-patch": "node scripts/release.js patch",
     "test": "node scripts/test.js"
   },
-  "version": "0.0.15",
+  "version": "0.1.0",
   "bugs": {
     "url": ""
   },
