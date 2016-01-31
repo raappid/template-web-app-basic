@@ -43,7 +43,8 @@
     "steal": "^0.14.0-pre.5",
     "steal-tools": "^0.14.0-pre.2",
     "tiny-lr": "^0.2.1",
-    "typescript": "^1.7"
+    "typescript": "^1.7",
+    "typings": "^0.6.3"
   },
   "engines": {
     "node": ">=5.0.0"
