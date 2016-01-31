@@ -1,4 +1,4 @@
-/// <reference path="../../../../typings/tsd.d.ts" />
+/// <reference path="../../../../typings/browser.d.ts" />
 
 import helloService = require("../../../../src/client/systems/service_system/services/hello-service")
 import Spy = jasmine.Spy;

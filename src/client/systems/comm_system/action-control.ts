@@ -1,5 +1,5 @@
 
-/// <reference path="../../../../typings/tsd.d.ts" />
+/// <reference path="../../../../typings/browser.d.ts" />
 
 import {IActionControl} from "../interfaces/comm_system/IActionControl"
 import {HandlerObject} from "./HandlerObject";

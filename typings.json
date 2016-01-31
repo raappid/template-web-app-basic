@@ -1,0 +1,10 @@
+{
+  "ambientDependencies": {
+    "bluebird": "github:DefinitelyTyped/DefinitelyTyped/bluebird/bluebird.d.ts#1984ea435fe9e93a012d50db7773db58ae5d494b",
+    "eventemitter3": "github:DefinitelyTyped/DefinitelyTyped/eventemitter3/eventemitter3.d.ts#f85b83dbbffbc0d490b232b34f0664b424e8ce33"
+  },
+  "ambientDevDependencies": {
+    "jasmine": "github:DefinitelyTyped/DefinitelyTyped/jasmine/jasmine.d.ts#26c98c8a9530c44f8c801ccc3b2057e2101187ee",
+    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#1c56e368e17bb28ca57577250624ca5bd561aa81"
+  }
+}
