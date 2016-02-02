@@ -4,6 +4,7 @@
   "author": {
     "name": ""
   },
+  "main": "src/client/main",
   "system": {
     "npmIgnore": [
       "devDependencies",

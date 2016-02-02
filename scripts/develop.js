@@ -16,10 +16,8 @@ util.exec("npm run build",function(){
     //watch for html file changes
     myWatch(["src/**/*.html"],reload);
 
-    myWatch(["src/**/*.js"],reload);
-
-    myWatch(["src/**/*.scss"],function(filePath){
-        util.exec("npm run build sass",function(err){
+    myWatch(["src/**/*.scss","src/**/*.ts"],function(filePath){
+        util.exec("npm run build",function(err){
             if(!err)
             {
                 reload(filePath);
