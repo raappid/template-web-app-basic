@@ -76,8 +76,8 @@ function buildTypescript(cb,isRelease){
 
     var cmd = "tsc";
 
-    if(isRelease)
-        cmd = cmd + " -p src";
+    if(!isRelease)
+        cmd = cmd + " --sourceMap";
 
     util.exec(cmd, function (err) {
 

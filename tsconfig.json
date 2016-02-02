@@ -6,7 +6,6 @@
     "removeComments": true,
     "noLib": false,
     "emitDecoratorMetadata":true,
-    "sourceMap": true,
     "experimentalDecorators":true,
     "noEmitOnError":true,
     "moduleResolution":"node"
