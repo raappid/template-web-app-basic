@@ -39,19 +39,12 @@ else // will build both sass and typescript in the src directory
 
 }
 
-function buildSASS(cb,isRelease,outDir) {
+function buildSASS(cb) {
 
     var mainSassFilePath = path.resolve("./src/client/systems/view_system/styles/main.scss");
     var outFilePath = path.resolve("./src/client/systems/view_system/styles/main.css");
 
-    if(isRelease)
-    {
-        fs.ensureDir(outDir+"/src/client/");
-        outFilePath = outDir+"/src/client/main.css";
-    }
-
-
-    var result = sass.render({
+    sass.render({
         file: mainSassFilePath
     },function(error, result){
 
@@ -124,8 +117,9 @@ function copyIndexHtmlFile(cb,distDir){
 function copyAssetsAndServerFiles(cb,distDir){
 
     cpy(["src/server.js",
-        "!src/systems/**/*.js",
-        "!src/systems/**/*.ts",
+         "src/client/**/*",
+        "!src/client/**/*.js",
+        "!src/client/**/*.ts",
         "!src/**/*.scss"],distDir,{cwd:process.cwd(),parents: true, nodir: true}).then(function(){
 
         util.finishTask(cb)
@@ -150,8 +144,7 @@ function buildRelease(){
                     args:[true]
                 },
 
-                {fn:buildSASS,
-                    args:[true,distDir]
+                {fn:buildSASS
                 },
 
                 {fn:bundleFiles,
