@@ -1,6 +1,4 @@
 
-/// <reference path="../../../../typings/browser.d.ts" />
-
 import {IActionControl} from "../interfaces/comm_system/IActionControl";
 
 export var actionControl:IActionControl = require("./action-control");

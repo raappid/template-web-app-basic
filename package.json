@@ -5,6 +5,7 @@
     "name": ""
   },
   "main": "src/client/main",
+  "typings": "./typings/browser.d.ts",
   "system": {
     "npmIgnore": [
       "devDependencies",

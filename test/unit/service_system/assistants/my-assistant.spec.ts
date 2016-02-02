@@ -1,4 +1,3 @@
-/// <reference path="../../../../typings/browser.d.ts" />
 
 import helloService = require("../../../../src/client/systems/service_system/services/hello-service");
 import hiService = require("../../../../src/client/systems/service_system/services/hi-service");

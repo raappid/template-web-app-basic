@@ -1,5 +1,3 @@
-/// <reference path="../../../../typings/browser.d.ts" />
-
 
 import hiService = require("../../../../src/client/systems/service_system/services/hi-service")
 import Spy = jasmine.Spy;

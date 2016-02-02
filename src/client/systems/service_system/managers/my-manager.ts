@@ -1,6 +1,4 @@
 
-/// <reference path="../../../../../typings/browser.d.ts" />
-
 import myAssistant = require("../assistants/my-assistant");
 import Promise  = require("bluebird");
 

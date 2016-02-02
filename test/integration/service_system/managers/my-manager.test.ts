@@ -1,4 +1,3 @@
-/// <reference path="../../../../typings/browser.d.ts" />
 
 import myAssistant = require("../../../../src/client/systems/service_system/assistants/my-assistant");
 import myManager = require("../../../../src/client/systems/service_system/managers/my-manager");

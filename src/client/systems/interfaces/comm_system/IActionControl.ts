@@ -1,6 +1,4 @@
 
-/// <reference path="../../../../../typings/browser.d.ts" />
-
 
 import Promise = require('bluebird');
 

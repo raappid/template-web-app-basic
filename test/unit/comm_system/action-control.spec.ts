@@ -1,5 +1,3 @@
-/// <reference path="../../../typings/browser.d.ts" />
-
 
 import actionControl1 = require("../../../src/client/systems/comm_system/action-control");
 import Promise = require('bluebird');
