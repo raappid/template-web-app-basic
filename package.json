@@ -36,6 +36,7 @@
     "karma-firefox-launcher": "^0.1.7",
     "karma-jasmine": "^0.3.7",
     "karma-jasmine-html-reporter": "^0.2.0",
+    "karma-mocha-reporter": "^1.1.5",
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-steal-npm": "^0.1.4",
     "minimist": "^1.2.0",
@@ -72,7 +73,9 @@
     "release-major": "node scripts/release.js major",
     "release-minor": "node scripts/release.js minor",
     "release-patch": "node scripts/release.js patch",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "test-local-chrome": "node scripts/test.js local Chrome",
+    "test-local-firefox": "node scripts/test.js local Firefox"
   },
   "version": "0.1.7",
   "bugs": {
