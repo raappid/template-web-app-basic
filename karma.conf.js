@@ -24,7 +24,7 @@ module.exports = function(config) {
             dir : 'coverage/',
             reporters: [
                 { type: 'html', subdir: 'html' },
-                { type: 'lcovonly', subdir: 'lcov' },
+                { type: 'lcovonly', subdir: './' },
                 { type: 'cobertura', subdir: 'cobertura' }
             ]
         }
