@@ -19,9 +19,10 @@ export class MyStore extends StoreBase implements IMyStore
         this.registerAction(Actions.SAY_HI_AND_HELLO,this.handleSayHiHello);
     }
 
-    private handleSayHiHello():string
+    private handleSayHiHello(result:string):string
     {
-        this._sayHiHello = "Hi and Hello";
+        this._sayHiHello = result;
+        this.dispatchEvent(EventConstants.MyStore.HI_HELLO, result);
         return this._sayHiHello
     }
 }

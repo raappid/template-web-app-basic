@@ -151,15 +151,6 @@ describe('ActionDispatcher', function() {
             done();
         });
 
-        it('should throw an error when no handler found for the action', function(done) {
-
-            throws = function() {
-                actionDispatcher.perform("action");
-            };
-            expect(throws).toThrowError(Errors.ERROR_TAKING_ACTION_NO_HANDLER_REGISTERED);
-            done();
-        });
-
         it('should successfully call any handler associated with the action', function(done) {
 
             var handler = function(data){

@@ -70,23 +70,27 @@ export class ActionDispatcher extends EventDispatcher implements IActionDispatch
 
         let handler1:HandlerObject = this.getHandler(actionName);
 
-        if(!handler1)
-            throw new Error(Errors.ERROR_TAKING_ACTION_NO_HANDLER_REGISTERED);
+        if(handler1)
+        {
 
-        var handler:Function = handler1.handler;
-        var context:any = handler1.context;
+            var handler:Function = handler1.handler;
+            var context:any = handler1.context;
 
-        return new Promise((resolve,reject)=>{
-            try {
+            return new Promise((resolve,reject)=>{
+                try {
 
-                resolve(handler.call(context,...argArray));
-            }
-            catch (error)
-            {
-               reject(error);
-            }
-        })
-
+                    resolve(handler.call(context,...argArray));
+                }
+                catch (error)
+                {
+                    reject(error);
+                }
+            })
+        }
+        else
+        {
+            Promise.resolve();
+        }
     }
 
 

@@ -1,8 +1,7 @@
 
-import myAssistant = require("../../../../src/client/app/service_system/assistants/my-assistant");
-import myManager = require("../../../../src/client/app/service_system/managers/my-manager");
 
-describe('my-manager Integration Test cases', () => {
+import {myManager} from "../../../../src/client/app/service_system/index";
+describe('MyManager Integration Test cases', () => {
 
     describe("sayHello",()=>{
 

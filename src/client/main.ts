@@ -3,14 +3,12 @@
 import {actionDispatcher} from "./app/index";
 
 import {EventConstants, Actions} from "./app/service_system/constants";
+import {myStore, myManager} from "./app/service_system/index";
 
-actionDispatcher.addEventListener(EventConstants.HI_HELLO,(result:string)=>{
 
-    console.log("Event Received:\n"+result);
+myStore.addEventListener(EventConstants.MyStore.HI_HELLO,(result)=>{
+    console.log("My Store data updated: " + result)
 });
 
 //performing an action
-actionDispatcher.perform(Actions.SAY_HI_AND_HELLO).then((result:string)=>{
-    console.log("Action Performed:\n"+result);
-    console.log(result);
-});
+myManager.sayHello();
