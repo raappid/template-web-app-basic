@@ -1,8 +1,7 @@
 
 
+import {actionDispatcher} from "./app/index";
 
-
-import {actionDispatcher} from "./app/comm_system/index";
 import {EventConstants, Actions} from "./app/service_system/constants";
 
 actionDispatcher.addEventListener(EventConstants.HI_HELLO,(result:string)=>{

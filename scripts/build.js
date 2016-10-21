@@ -133,7 +133,7 @@ function copyAssetsAndServerFiles(cb,distDir){
 }
 
 function copyFromTempDir(dist) {
-    fs.copySync(tempDir+"/src/client",dist);
+    fs.copySync(tempDir+"/src",dist);
     fs.removeSync(tempDir);
 }
 

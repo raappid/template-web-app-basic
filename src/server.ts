@@ -2,8 +2,7 @@
 import path = require("path");
 import http = require('http');
 
-var connect = require('connect');
-var serveStatic = require('serve-static');
+var express = require('express');
 
 
 
@@ -20,7 +19,7 @@ export function start(port?:number,plugins?:Array<any>):void
         httpPort = 3000;
     }
 
-    var app = connect();
+    var app = express();
 
     if(plugins)
     {
@@ -32,31 +31,18 @@ export function start(port?:number,plugins?:Array<any>):void
 
     if(env === "development")
     {
-        app.use(serveStatic(staticPath,{'index': ['src/client/index.html']}))
+        app.use(express.static("./"));
+        app.use(express.static("src/client"));
+        app.use('/node_modules', express.static('node_modules'));
     }
     else
     {
-        staticPath = path.resolve("./dist/src/client");
-        app.use(serveStatic(staticPath))
+        app.use(express.static("client"));
     }
 
-    server = http.createServer(app).listen(httpPort);
+    server = app.listen(httpPort);
 
-
-    // Maintain a hash of all connected sockets
-    var sockets = {}, nextSocketId = 0;
-    server.on('connection', function (socket) {
-        // Add a newly connected socket
-        var socketId = nextSocketId++;
-        sockets[socketId] = socket;
-
-        // Remove the socket when it closes
-        socket.on('close', function () {
-            delete sockets[socketId];
-        });
-    });
-
-    console.log("Server started");
+    console.log("Server started at port: " + port);
 
     return server;
 }

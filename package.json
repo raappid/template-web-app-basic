@@ -16,9 +16,7 @@
   },
   "dependencies": {
     "bluebird": "3.4.6",
-    "connect": "3.5.0",
-    "eventemitter3": "2.0.2",
-    "serve-static": "1.11.1",
+    "express": "4.14.0",
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {

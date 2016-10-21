@@ -1,1 +1,1 @@
-web: node dist/src/server.js
+web: node dist/server.jsNODE_ENV=testing node app.js
