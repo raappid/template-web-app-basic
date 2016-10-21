@@ -1,23 +1,32 @@
 
-import {IActionControl} from "../interfaces/comm_system/IActionControl"
-import {HandlerObject} from "./HandlerObject";
 
-import Promise  = require("bluebird");
+import {Errors} from "./constants";
+import {EventDispatcher} from "./EventDispatcher";
 
-import {Errors} from "./index";
-
-import EE = require("eventemitter3");
-
-import EventEmitter = EventEmitter3.EventEmitter;
+class HandlerObject{
+    private _handler:Function;
+    private _context:any;
 
 
-class ActionControl implements IActionControl
+    get handler():Function {
+        return this._handler;
+    }
+
+    get context():any {
+        return this._context;
+    }
+
+    constructor(handler:Function, context:any) {
+        this._handler = handler;
+        this._context = context;
+    }
+}
+
+export class ActionDispatcher extends EventDispatcher implements IActionDispatcher
 {
     
     protected actionHandlers:any = {};
-
-    protected ee:EventEmitter = new EE();
-
+    
     protected getHandler(actionName:string):HandlerObject
     {
         var handlerObject:HandlerObject = this.actionHandlers[actionName];
@@ -35,7 +44,7 @@ class ActionControl implements IActionControl
 
     registerAction(actionName:string, handler:Function,context?:any):void {
 
-        if(!isValidActionOrEventName(actionName))
+        if(!this.isValidActionOrEventName(actionName))
             throw new Error(Errors.ERROR_REGISTERING_ACTION_NAME_NOT_TYPE_STRING);
 
         if(handler === undefined || handler === null)
@@ -56,7 +65,7 @@ class ActionControl implements IActionControl
 
     perform(actionName:any, ...argArray: any[]):Promise<any> {
 
-        if(!isValidActionOrEventName(actionName))
+        if(!this.isValidActionOrEventName(actionName))
             throw new Error(Errors.ERROR_TAKING_ACTION_ACTION_NAME_NOT_TYPE_STRING);
 
         let handler1:HandlerObject = this.getHandler(actionName);
@@ -82,7 +91,7 @@ class ActionControl implements IActionControl
 
 
     unregisterAction(actionName:string, handler:Function):void {
-        if(!isValidActionOrEventName(actionName))
+        if(!this.isValidActionOrEventName(actionName))
             throw new Error(Errors.ERROR_UNREGISTERING_ACTION_NAME_NOT_TYPE_STRING);
 
         if(handler === undefined || handler === null)
@@ -93,55 +102,4 @@ class ActionControl implements IActionControl
 
         this.actionHandlers[actionName] = null;
     }
-
-    publish(eventName:string, ...args: any[]):void {
-
-        if(!isValidActionOrEventName(eventName))
-            throw new Error(Errors.ERROR_PUBLISHING_EVENT_NAME_NOT_TYPE_STRING);
-
-        this.ee.emit(eventName,...args);
-
-    }
-
-    subscribe(eventName:string, callback:(...args:any[])=>any,context?:any):void {
-
-        if(!isValidActionOrEventName(eventName))
-            throw new Error(Errors.ERROR_SUBSCRIBING_EVENT_NAME_NOT_TYPE_STRING);
-
-        if(callback === undefined || callback === null)
-            throw new Error(Errors.ERROR_NO_HANDLER_WHILE_SUBSCRIBING);
-
-        if(typeof callback !== 'function')
-            throw new Error(Errors.ERROR_SUBSCRIBING_HANDLER_NOT_TYPE_FUNCTION);
-
-        this.ee.addListener(eventName,callback.bind(context));
-
-    }
-
-
-    unSubscribe(eventName:string, callback:Function):void {
-
-        if(!isValidActionOrEventName(eventName))
-            throw new Error(Errors.ERROR_UNSUBSCRIBING_EVENT_NAME_NOT_TYPE_STRING);
-
-        if(callback === undefined || callback === null)
-            throw new Error(Errors.ERROR_NO_HANDLER_WHILE_UNSUBSCRIBING);
-
-        if(typeof callback !== 'function')
-            throw new Error(Errors.ERROR_UNSUBSCRIBING_HANDLER_NOT_TYPE_FUNCTION);
-
-        this.ee.removeListener(eventName,callback);
-
-    }
-
-    hasSubscribers(eventName:string):boolean {
-        return this.ee.listeners(eventName) && this.ee.listeners(eventName).length > 0;
-    }
 }
-
-function isValidActionOrEventName(eventName:string):boolean
-{
-    return eventName !== undefined && eventName !== null && typeof eventName === 'string';
-}
-
-module.exports = new ActionControl();

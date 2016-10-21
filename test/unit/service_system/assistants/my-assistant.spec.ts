@@ -1,8 +1,7 @@
 
-import helloService = require("../../../../src/client/systems/service_system/services/hello-service");
-import hiService = require("../../../../src/client/systems/service_system/services/hi-service");
-import myAssistant = require("../../../../src/client/systems/service_system/assistants/my-assistant");
-import Promise = require("bluebird");
+import helloService = require("../../../../src/client/app/service_system/services/hello-service");
+import hiService = require("../../../../src/client/app/service_system/services/hi-service");
+import myAssistant = require("../../../../src/client/app/service_system/assistants/my-assistant");
 import Spy = jasmine.Spy;
 
 describe('my-assistant Test cases', () => {

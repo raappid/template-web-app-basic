@@ -1,5 +1,5 @@
 
-import helloService = require("../../../../src/client/systems/service_system/services/hello-service")
+import helloService = require("../../../../src/client/app/service_system/services/hello-service")
 import Spy = jasmine.Spy;
 
 describe('hello-service Test cases', () => {

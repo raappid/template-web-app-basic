@@ -1,5 +1,5 @@
 
-import hiService = require("../../../../src/client/systems/service_system/services/hi-service")
+import hiService = require("../../../../src/client/app/service_system/services/hi-service")
 import Spy = jasmine.Spy;
 
 describe('hi-service Test cases', () => {

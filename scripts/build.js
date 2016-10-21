@@ -7,7 +7,8 @@ var fs = require("fs-extra");
 
 var cpy = require("cpy");
 var pp = require('preprocess');
-
+var distDir = path.resolve("./dist");
+var tempDir = path.resolve("./temp");
 
 if(argv._ && argv._.length > 0) //look for release build
 {
@@ -41,8 +42,8 @@ else // will build both sass and typescript in the src directory
 
 function buildSASS(cb) {
 
-    var mainSassFilePath = path.resolve("./src/client/systems/view_system/styles/main.scss");
-    var outFilePath = path.resolve("./src/client/systems/view_system/styles/main.css");
+    var mainSassFilePath = path.resolve("./src/client/assets/styles/main.scss");
+    var outFilePath = path.resolve("./src/client/assets/styles/main.css");
 
     sass.render({
         file: mainSassFilePath
@@ -131,6 +132,12 @@ function copyAssetsAndServerFiles(cb,distDir){
 
 }
 
+function copyFromTempDir(dist) {
+    fs.copySync(tempDir+"/src/client",dist);
+    fs.removeSync(tempDir);
+}
+
+
 function buildRelease(){
 
     util.exec("npm run clean", function (err) {
@@ -148,18 +155,23 @@ function buildRelease(){
                 },
 
                 {fn:bundleFiles,
-                    args:[distDir]
+                    args:[tempDir]
                 },
 
                 {fn:copyAssetsAndServerFiles,
-                    args:[distDir]
+                    args:[tempDir]
                 },
 
                 {fn:copyIndexHtmlFile,
-                    args:[distDir]
+                    args:[tempDir]
                 }
             ]
             ,function(err){
+
+                if(!err)
+                {
+                    copyFromTempDir(distDir);
+                }
 
                 util.finishTask(null,err,true);
             });
