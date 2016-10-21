@@ -37,7 +37,7 @@ export function start(port?:number,plugins?:Array<any>):void
     }
     else
     {
-        app.use(express.static("client"));
+        app.use(express.static("dist/client"));
     }
 
     server = app.listen(httpPort);
