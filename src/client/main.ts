@@ -1,8 +1,7 @@
 
 
-import {actionDispatcher} from "./app/index";
 
-import {EventConstants, Actions} from "./app/service_system/constants";
+import {EventConstants} from "./app/service_system/constants";
 import {myStore, myManager} from "./app/service_system/index";
 
 
