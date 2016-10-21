@@ -79,7 +79,7 @@
     "test-local-chrome": "node scripts/test.js local Chrome",
     "test-local-firefox": "node scripts/test.js local Firefox"
   },
-  "version": "0.1.15",
+  "version": "1.0.0",
   "bugs": {
     "url": ""
   },

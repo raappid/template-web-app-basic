@@ -1,6 +1,6 @@
 {
   "name": "template-web-app-basic",
-  "version": "0.1.15",
+  "version": "1.0.0",
   "dependencies": {
     "@types/bluebird": {
       "version": "3.0.35",
