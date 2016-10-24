@@ -17,12 +17,12 @@
   "dependencies": {
     "bluebird": "3.4.6",
     "express": "4.14.0",
-    "whatwg-fetch": "^1.0.0"
+    "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.0.35",
-    "@types/jasmine": "^2.5.35",
-    "@types/node": "^6.0.45",
+    "@types/bluebird": "3.0.35",
+    "@types/jasmine": "2.5.35",
+    "@types/node": "6.0.45",
     "@types/whatwg-fetch": "0.0.32",
     "chokidar": "1.6.1",
     "connect-livereload": "0.6.0",
@@ -40,7 +40,7 @@
     "karma-jasmine-html-reporter": "0.2.2",
     "karma-mocha-reporter": "2.2.0",
     "karma-phantomjs-launcher": "1.0.2",
-    "karma-steal-npm": "0.1.4",
+    "karma-steal-npm": "0.1.5",
     "minimist": "1.2.0",
     "node-sass": "3.10.1",
     "phantomjs-prebuilt": "2.1.13",
