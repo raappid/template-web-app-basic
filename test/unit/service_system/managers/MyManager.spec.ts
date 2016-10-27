@@ -2,6 +2,7 @@
 import Promise = require("bluebird");
 import myAssistant = require("../../../../src/client/app/service_system/assistants/my-assistant");
 import {MyManager} from "../../../../src/client/app/service_system/managers/MyManager";
+import {IMyManager} from "../../../../src/client/app/service_system/interfaces/managers/IMyManager";
 
 describe('MyManager Test cases', () => {
 

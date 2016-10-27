@@ -1,4 +1,5 @@
 
+import Promise = require("bluebird");
 
 declare interface IMyManager
 {
