@@ -1,11 +1,12 @@
 
 import any = jasmine.any;
 import Spy = jasmine.Spy;
+import Promise = require("bluebird");
 import {Errors} from "../../../src/client/app/comm_system/constants";
 import {ActionDispatcher} from "../../../src/client/app/comm_system/ActionDispatcher";
 
 describe('ActionDispatcher', function() {
-    
+    console.log(Promise);
     var actionDispatcher:any = new ActionDispatcher();
     var throws;
 
@@ -219,7 +220,7 @@ describe('ActionDispatcher', function() {
 
             var result = actionDispatcher.perform(action, "humm");
 
-            expect(result).toEqual(jasmine.any(Promise));
+            expect(result instanceof Promise).toEqual(true);
             done();
         });
 
@@ -232,7 +233,7 @@ describe('ActionDispatcher', function() {
 
             var result = actionDispatcher.perform(action, "humm");
 
-            expect(result).toEqual(jasmine.any(Promise));
+            expect(result instanceof Promise).toEqual(true);
             done();
         });
 
@@ -245,7 +246,7 @@ describe('ActionDispatcher', function() {
 
             var result = actionDispatcher.perform(action, "humm");
 
-            expect(result).toEqual(jasmine.any(Promise));
+            expect(result instanceof Promise).toEqual(true);
 
             result.then(null,(error)=>{
                 expect(error).toEqual(jasmine.any(Error));

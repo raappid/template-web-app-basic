@@ -3,6 +3,7 @@ import helloService = require("../../../../src/client/app/service_system/service
 import hiService = require("../../../../src/client/app/service_system/services/hi-service");
 import myAssistant = require("../../../../src/client/app/service_system/assistants/my-assistant");
 import Spy = jasmine.Spy;
+import Promise = require("bluebird");
 
 describe('my-assistant Test cases', () => {
 
