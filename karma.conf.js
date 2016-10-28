@@ -22,9 +22,8 @@ module.exports = function(config) {
 
         webpack: {
             resolve: {
-                extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
-                modulesDirectories: [
-                    "",
+                extensions: [ '.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
+                modules: [
                     "src",
                     "node_modules"
                 ]
@@ -32,7 +31,7 @@ module.exports = function(config) {
             module: {
                 loaders: [
                     // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
-                    { test: /\.tsx?$/, loader: 'ts-loader' }
+                    { test: /\.tsx?$/, loader: 'awesome-typescript-loader' }
                 ]
             },
             plugins: [
