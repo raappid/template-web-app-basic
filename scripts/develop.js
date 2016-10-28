@@ -10,7 +10,7 @@ var httpPort = 3000;
 var server;
 var webpackConfig = require("../webpack.config");
 
-util.exec("cross-env NODE_ENV=development webpack-dev-server --progress --profile --watch",function(){
+util.exec("cross-env NODE_ENV=development webpack-dev-server --progress --profile --watch --inline --hot",function(){
 
     console.log("Server Started at: " + "http://"+webpackConfig.devServer.host+":"+webpackConfig.devServer.port);
 

@@ -4,12 +4,26 @@
     <meta charset="UTF-8">
     <title>My Title</title>
 
-    <link rel="stylesheet" type="text/css" href="./assets/styles/main.css">
+
+    <!--  Android 5 Chrome Color-->
+    <meta name="theme-color" content="#4894b7">
+    <meta name="google" value="notranslate"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+
+    <!-- @if BUILD="release" !>
+        <link rel="stylesheet" type="text/css" href="./assets/styles/main.css">
+    <!-- @endif -->
 
 </head>
 <body>
 
 <div id="app"><h1>Hello World!!!</h1></div>
+
 <!-- @if BUILD='release' !>
     <script src="main.js"></script>
 <!-- @endif !>

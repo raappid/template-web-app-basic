@@ -1,5 +1,6 @@
 
 
+require("./assets/styles/main.scss");
 
 import {EventConstants} from "./app/service_system/constants";
 import {myStore, myManager} from "./app/service_system/index";
