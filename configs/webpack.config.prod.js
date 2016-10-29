@@ -1,21 +1,20 @@
 
 
-// Look in ./config folder for webpack.dev.js
 var path = require("path");
 var webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+var extractCSS = new ExtractTextPlugin('src/client/assets/styles/[name].css');
 
-const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST || 'localhost';
 module.exports = {
-  entry: {
-
-    'main': './src/client/main.ts'
-
+  entry:{
+    'main': [
+      "./src/client/main.ts"
+    ]
   },
   output: {
 
-    path: path.resolve("./dist"),
+    path: path.resolve("./dist/client"),
 
     filename: '[name].js',
 
@@ -30,10 +29,18 @@ module.exports = {
   },
   module: {
     loaders: [
-      // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
-      { test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
+      {
+        test: /\.html$/,
+        loader: "raw-loader" // loaders: ['raw-loader'] is also perfectly acceptable.
+      },
+      { test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader'
+      },
 
-      {test: /\.scss$/,loaders: ["style", "css", "sass"]}
+      {
+        test: /\.scss$/,
+        loaders: extractCSS.extract(["style", "css", "sass"])
+      }
     ]
   },
   plugins: [
@@ -45,12 +52,11 @@ module.exports = {
     new webpack.SourceMapDevToolPlugin({
       filename: null, // if no value is provided the sourcemap is inlined
       test: /\.(ts|js)($|\?)/i // process .js and .ts files only
-    })
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
   ],
-  devServer: {
-    port: PORT,
-    host: HOST
-  },
   node: {
     global: true,
     crypto: 'empty',

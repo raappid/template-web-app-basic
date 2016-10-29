@@ -68,7 +68,7 @@ function buildSASS(cb) {
 
 function buildTypescript(cb,isRelease){
 
-    var cmd = "tsc";
+    var cmd = "tsc -p src/api";
 
     if(!isRelease)
         cmd = cmd + " --sourceMap";
