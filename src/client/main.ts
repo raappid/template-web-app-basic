@@ -1,10 +1,5 @@
 
 
-require("./assets/styles/main.scss");
-if (process.env.NODE_ENV !== 'production') {
-
-}
-
 import {EventConstants} from "./app/service_system/constants";
 import {myStore, myManager} from "./app/service_system/index";
 

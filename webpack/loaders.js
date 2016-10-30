@@ -4,13 +4,14 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var loaders = [
 
-    /*  {
-     test: /\.html$/,
-     loader: "html" // loaders: ['html] is also perfectly acceptable.
-     },*/
 
     { test: /\.tsx?$/,
         loader: 'awesome-typescript-loader'
+    },
+
+    {
+        test: /\.html$/,
+        loader: "underscore-template-loader" // loaders: ['underscore-template-loader'] is also perfectly acceptable.
     }
 
 ];
@@ -22,9 +23,11 @@ module.exports = function (metadata) {
     if(!metadata.isProduction)
     {
         loaders.push({
+
             test: /\.scss$/,
             loaders: ["style", "css", "sass"]
         });
+
     }
     else
     {

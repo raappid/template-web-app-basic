@@ -10,12 +10,15 @@ var METADATA = {
 const loaders = require("./webpack/loaders")(METADATA);
 const plugins = require("./webpack/plugins")(METADATA);
 
-var devEntries = [ 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
-  'webpack/hot/dev-server'];
+var devEntries = [  'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
+  'webpack/hot/dev-server'
+];
 
 var entry = {
   'main': [
-    projectConfig.srcClientDirMain
+    projectConfig.srcClientDirMain,
+    projectConfig.srcClientDirIndex,
+    projectConfig.srcClientDirMainCSS
   ]
 };
 var output = {

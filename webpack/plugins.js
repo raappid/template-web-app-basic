@@ -34,7 +34,7 @@ module.exports = function (metadata) {
     }
     else
     {
-        plugins.push(new ExtractTextPlugin("./assets/styles/[name].css"));
+        plugins.push(new ExtractTextPlugin(projectConfig.distClientDirMainCSS));
     }
 
     return plugins;

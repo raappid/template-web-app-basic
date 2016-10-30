@@ -16,13 +16,15 @@ config.distDir = distDir;
 
 config.srcDir = srcDir;
 config.srcClientDir = srcDir + '/' + clientDir;
-config.srcClientDirMain = srcDir + '/' + clientDir + "/main.ts";
-config.srcClientDirIndex = srcDir + '/' + clientDir + "/index.html";
+config.srcClientDirMain = config.srcClientDir + "/main.ts";
+config.srcClientDirIndex = config.srcClientDir + "/index.html";
+config.srcClientDirMainCSS = config.srcClientDir + "/assets/styles/main.scss";
 config.srcApiDir = srcDir + '/' + apiDir;
 
 config.distClientDir = distDir + '/' + clientDir;
-config.distClientDirMain = distDir + '/' + clientDir + "/main.js";
-config.distClientDirIndex = distDir + '/' + clientDir + "/index.html";
+config.distClientDirMain = "./main.js";
+config.distClientDirIndex =  "./index.html";
+config.distClientDirMainCSS = "./assets/styles/main.css";
 config.distApiDir = distDir + '/' + apiDir;
 
 module.exports = config;
