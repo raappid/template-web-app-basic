@@ -1,12 +1,13 @@
 
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+var projectConfig = require("../project.config");
 
 var loaders = [
 
 
     { test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader'
+        loader: 'awesome-typescript-loader?tsconfig=' + projectConfig.rootDir+"/tsconfig.json"
     },
 
     {

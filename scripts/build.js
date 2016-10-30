@@ -5,13 +5,23 @@ var sass = require('node-sass');
 var path = require("path");
 var fs = require("fs-extra");
 
+var subCommand;
 if(argv._ && argv._.length > 0) //look for release build
 {
-    var subCommand = argv._[0].toLowerCase();
+    subCommand = argv._[0].toLowerCase();
     if(subCommand === "release")
     {
         process.env.NODE_ENV = "production";
         buildRelease();
+    }
+    else if(subCommand == "typescript")
+    {
+        buildTypescript(function(err){
+            if(err)
+                process.exit(1);
+            else
+                process.exit(0);
+        });
     }
 
 }
@@ -35,7 +45,12 @@ else // will build both sass and typescript in the src directory
 
 function buildTypescript(cb,isRelease){
 
-    var cmd = "tsc -p src/api"; // only need to build api as client code is taken care by webpack
+    var cmd = "tsc";
+
+    if(subCommand !== "typescript")
+    {
+        cmd = cmd + " -p src/api"; // only need to build api as client code is taken care by webpack
+    }
 
     if(!isRelease)
         cmd = cmd + " --sourceMap";

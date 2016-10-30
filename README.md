@@ -26,11 +26,11 @@ This is a basic starter template for getting quick start on full featured web ap
 #### Features
 - No Frontend Framework is used. The choice is yours.
 - Styling is Powered by [Sass](http://sass-lang.com/)  
-- Api is powered by [Express](http://expressjs.com/) 
+- API is powered by [Express](http://expressjs.com/) 
 - For Development
     - Live reload.
     - Unit Testing with Karma and Code coverage support.
-    - E2E testing configured with protractor.
+    - E2E Automated testing configured with [Protractor](http://www.protractortest.org/#/). Yes It can be used with non-angular apps.
     - Continuous Integration (CI) configured to be used with [Travis CI](https://travis-ci.org/) 
 
 - Configured to release project to Github.
@@ -38,10 +38,10 @@ This is a basic starter template for getting quick start on full featured web ap
  
 ###How To:
    
--  [Start Developing](docs/development.md);
--  [Setup Continuous Integration](docs/CI.md);
--  [Release to Github](docs/release.md);
--  [Deploy your project to Heroku](docs/deploy.md);
+-  [Start Developing](docs/development.md)
+-  [Setup Continuous Integration](docs/CI.md)
+-  [Release to Github](docs/release.md)
+-  [Deploy your project to Heroku](docs/deploy.md)
 
     
 #    

@@ -5,7 +5,7 @@ var projectConfig = require("./project.config");
 var METADATA = {
   env:process.env.NODE_ENV,
   isProduction:process.env.NODE_ENV == 'production',
-  isTest:process.env.NODE_ENV == 'test',
+  isTest:process.env.NODE_ENV == 'test'
 };
 
 const loaders = require("./webpack/loaders")(METADATA);

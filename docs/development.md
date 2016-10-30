@@ -25,4 +25,4 @@
 
 #####Notes:
 - All Styling is Done using Sass, if you want to use custom css file put it in <b>client/libs</b> folder 
-- All Scripts are written in TypeScript is you want to use custom javascript library, put it in <b>client/libs</b> or <b>api/libs</b> folder     
+- All Scripts are written in TypeScript if you want to use custom javascript library, put it in <b>client/libs</b> or <b>api/libs</b> folder     

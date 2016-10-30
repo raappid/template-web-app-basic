@@ -9,6 +9,7 @@ test/**/*.js
 !src/client/assets/fonts/**/*.css
 **/*.map
 coverage
+reporters
 dist
 temp
 npm-debug.log
