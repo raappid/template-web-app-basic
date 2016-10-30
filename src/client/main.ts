@@ -1,9 +1,8 @@
 
 
-
+require("./assets/styles/main.scss");
 if (process.env.NODE_ENV !== 'production') {
-    require("./index.html");
-    require("./assets/styles/main.scss");
+
 }
 
 import {EventConstants} from "./app/service_system/constants";

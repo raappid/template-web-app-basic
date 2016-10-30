@@ -6,7 +6,6 @@ var path = require("path");
 var fs = require("fs-extra");
 
 var cpy = require("cpy");
-var pp = require('preprocess');
 var distDir = path.resolve("./dist");
 var tempDir = path.resolve("./temp");
 
@@ -15,6 +14,7 @@ if(argv._ && argv._.length > 0) //look for release build
     var subCommand = argv._[0].toLowerCase();
     if(subCommand === "release")
     {
+        process.env.NODE_ENV = "production";
         buildRelease();
     }
 
@@ -29,38 +29,9 @@ else // will build both sass and typescript in the src directory
             process.exit(1);
         }
 
-        util.callTasksInSeries([
-            {fn:buildTypescript},
-            {fn:buildSASS}
-        ],function(err){
-
+        buildTypescript(function(err){
             util.finishTask(null,err,true);
-        })
-    });
-
-}
-
-function buildSASS(cb) {
-
-    var mainSassFilePath = path.resolve("./src/client/assets/styles/main.scss");
-    var outFilePath = path.resolve("./src/client/assets/styles/main.css");
-
-    sass.render({
-        file: mainSassFilePath
-    },function(error, result){
-
-        if(!error)
-        {
-            fs.writeFile(outFilePath,result.css,"utf8",function(err){
-
-                util.finishTask(cb,err,true);
-
-            });
-        }
-        else
-        {
-            util.finishTask(cb,err,true);
-        }
+        });
 
     });
 
@@ -68,7 +39,7 @@ function buildSASS(cb) {
 
 function buildTypescript(cb,isRelease){
 
-    var cmd = "tsc -p src/api";
+    var cmd = "tsc -p src/api"; // only need to build api as client code is taken care by webpack
 
     if(!isRelease)
         cmd = cmd + " --sourceMap";
@@ -80,45 +51,25 @@ function buildTypescript(cb,isRelease){
 
 }
 
-function bundleFiles(cb,distDir){
+function bundleFiles(cb){
 
-
-    var stealTools = require("steal-tools");
-
-    stealTools.build({
-            main: "src/client/main",
-            bundlesPath:distDir,
-            config: path.resolve("./")+"/package.json!npm"
-        },
+    util.exec("webpack -p",function(err) {
+        if(err)
+            cb(err);
+        else
         {
-            minify: true,
-            debug: false,
-            bundleSteal: true
+            cb();
         }
-    ).then(function(){
-
-        util.finishTask(cb);
-
-    },function(err){
-        util.finishTask(cb,err);
-    })
-}
-
-function copyIndexHtmlFile(cb,distDir){
-
-    var indexFile = path.resolve("./src/client/index.html");
-    var dest = distDir+"/src/client/index.html";
-    pp.preprocessFile(indexFile,dest,{BUILD : "release"},function(err){
-
-        util.finishTask(cb,err)
-    })
-
+    });
 }
 
 function copyAssetsAndServerFiles(cb,distDir){
 
-    cpy(["src/server.js",
+    cpy(["src/api/**/*",
+        "!src/api/tsconfig.json",
+        "!src/api/**/*.ts",
          "src/client/**/*",
+        "!src/client/index.html",
         "!src/client/**/*.js",
         "!src/client/**/*.ts",
         "!src/**/*.scss"],distDir,{cwd:process.cwd(),parents: true, nodir: true}).then(function(){
@@ -151,18 +102,9 @@ function buildRelease(){
                     args:[true]
                 },
 
-                {fn:buildSASS
-                },
-
-                {fn:bundleFiles,
-                    args:[tempDir]
-                },
+                {fn:bundleFiles},
 
                 {fn:copyAssetsAndServerFiles,
-                    args:[tempDir]
-                },
-
-                {fn:copyIndexHtmlFile,
                     args:[tempDir]
                 }
             ]

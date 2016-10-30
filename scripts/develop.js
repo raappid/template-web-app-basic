@@ -1,12 +1,10 @@
 
 path = require("path");
 var util = require('./util');
-var tinylr = require('tiny-lr')();
-var chokidar = require('chokidar');
 var httpPort = 3000;
 
 
-var webpackConfig = require("../configs/webpack.config.common");
+var webpackConfig = require("../webpack.config");
 var webpack = require("webpack");
 var webpackMiddleware = require("webpack-dev-middleware");
 var compiler = webpack(webpackConfig);
