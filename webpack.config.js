@@ -4,7 +4,8 @@ var projectConfig = require("./project.config");
 
 var METADATA = {
   env:process.env.NODE_ENV,
-  isProduction:process.env.NODE_ENV == 'production'
+  isProduction:process.env.NODE_ENV == 'production',
+  isTest:process.env.NODE_ENV == 'test',
 };
 
 const loaders = require("./webpack/loaders")(METADATA);
@@ -16,11 +17,18 @@ var devEntries = [  'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2
 
 var entry = {
   'main': [
-    projectConfig.srcClientDirMain,
-    projectConfig.srcClientDirIndex,
-    projectConfig.srcClientDirMainCSS
+    projectConfig.srcClientDirMain
   ]
 };
+
+if(!METADATA.isTest)
+{
+  entry.main = entry.main.concat([
+    projectConfig.srcClientDirIndex,
+    projectConfig.srcClientDirMainCSS
+  ])
+}
+
 var output = {
   path: projectConfig.distClientDir,
   filename: '[name].js'

@@ -5,6 +5,8 @@ node_modules
 src/**/*.js
 src/**/*.css
 test/**/*.js
+!src/**/libs/**/*
+!src/client/assets/fonts/**/*.css
 **/*.map
 coverage
 dist

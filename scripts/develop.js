@@ -9,7 +9,7 @@ var webpack = require("webpack");
 var webpackMiddleware = require("webpack-dev-middleware");
 var compiler = webpack(webpackConfig);
 
-var server
+var server;
 var webpackPlugin;
 
 util.exec("npm run build",function(){

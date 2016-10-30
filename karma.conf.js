@@ -1,5 +1,4 @@
 
-var webpack = require("webpack");
 module.exports = function(config) {
     config.set({
         basePath: '',
@@ -20,27 +19,7 @@ module.exports = function(config) {
             'test/**/*.tsx': ['webpack','sourcemap']
         },
 
-        webpack: {
-            resolve: {
-                extensions: [ '.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
-                modules: [
-                    "src",
-                    "node_modules"
-                ]
-            },
-            module: {
-                loaders: [
-                    // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
-                    { test: /\.tsx?$/, loader: 'awesome-typescript-loader' }
-                ]
-            },
-            plugins: [
-                new webpack.SourceMapDevToolPlugin({
-                    filename: null, // if no value is provided the sourcemap is inlined
-                    test: /\.(ts|js)($|\?)/i // process .js and .ts files only
-                })
-            ]
-        },
+        webpack: require("./webpack.config"),
 
         coverageReporter: {
             dir : 'coverage/',

@@ -3,6 +3,9 @@
 var webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+
+
 var projectConfig = require("../project.config");
 
 var plugins = [
@@ -20,7 +23,10 @@ module.exports = function (metadata) {
         inject: 'body'
     });
 
-    plugins.push(htmlWebPackPlugin);
+    if(!metadata.isTest)
+    {
+        plugins.push(htmlWebPackPlugin);
+    }
 
     if(!metadata.isProduction)
     {
@@ -35,6 +41,24 @@ module.exports = function (metadata) {
     else
     {
         plugins.push(new ExtractTextPlugin(projectConfig.distClientDirMainCSS));
+        plugins.push(new CopyWebpackPlugin([
+            {
+                context:projectConfig.srcDir,
+                from: projectConfig.srcDir,
+                to: projectConfig.distDir
+            }
+
+        ],{
+            ignore: [
+                'client/index.html',
+                'api/tsconfig.json',
+                'api/**/*.ts',
+                "client/**/*.scss",
+                "client/**/*.ts",
+                "client/**/*.js"
+            ],
+            debug: true
+        }))
     }
 
     return plugins;
