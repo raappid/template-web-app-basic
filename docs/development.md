@@ -16,8 +16,7 @@
        ``` 
 4. Open your app in your Favourite Browser
 
-5. Since Live reload is enabled, any Code changes will be picked up and refresh your app.
-
+5. Since Live reload is enabled, any Code changes will be picked up and your app will be automatically refreshed.
 ####To Test
 
 1. To run test cases: <b>npm run test</b>
