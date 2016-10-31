@@ -8,7 +8,7 @@ var METADATA = {
   isTest:process.env.NODE_ENV == 'test'
 };
 
-const loaders = require("./webpack/loaders")(METADATA);
+const rules = require("./webpack/rules")(METADATA);
 const plugins = require("./webpack/plugins")(METADATA);
 
 var devEntries = [  'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
@@ -71,7 +71,7 @@ module.exports = {
   output: output,
   resolve: resolve,
   module: {
-    loaders: loaders
+    rules: rules
   },
   plugins: plugins,
   node: node

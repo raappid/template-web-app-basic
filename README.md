@@ -28,6 +28,7 @@ This is a basic starter template for getting quick start on full featured web ap
 - Styling is Powered by [Sass](http://sass-lang.com/)  
 - API is powered by [Express](http://expressjs.com/) 
 - For Development
+    - [Webpack](https://webpack.js.org/) for module management. [Docs](https://webpack.js.org/configuration/)   
     - Live reload.
     - Unit Testing with Karma and Code coverage support.
     - E2E Automated testing configured with [Protractor](http://www.protractortest.org/#/). Yes It can be used with non-angular apps.

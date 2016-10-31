@@ -3,11 +3,14 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 var projectConfig = require("../project.config");
 
-var loaders = [
+var rules = [
 
 
     { test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader?tsconfig=' + projectConfig.rootDir+"/tsconfig.json"
+        loader: 'awesome-typescript-loader',
+        query: {
+            tsconfig: projectConfig.rootDir+"/tsconfig.json"
+        }
     },
 
     {
@@ -23,7 +26,7 @@ module.exports = function (metadata) {
 
     if(!metadata.isProduction)
     {
-        loaders.push({
+        rules.push({
 
             test: /\.scss$/,
             loaders: ["style", "css", "sass"]
@@ -32,11 +35,13 @@ module.exports = function (metadata) {
     }
     else
     {
-        loaders.push({
+        rules.push({
             test: /\.scss$/,
             loaders: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader','sass-loader']})
         });
 
     }
-    return loaders;
+
+
+    return rules
 };

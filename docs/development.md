@@ -18,9 +18,15 @@
 
 5. Since Live reload is enabled, any Code changes will be picked up and refresh your app.
 
-6. To run test cases: <b>npm run test</b>
+####To Test
 
-7. Coverage report is generated and put in <b>coverage</b> folder
+1. To run test cases: <b>npm run test</b>
+
+2. Coverage report is generated and put in <b>coverage</b> folder
+
+1. To run End to End Test cases: <b>npm run test-e2e</b>
+
+2. Report is generated and put in <b>reporters/e2e</b> folder
 
 
 #####Notes:

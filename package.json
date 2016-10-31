@@ -18,7 +18,7 @@
     "awesome-typescript-loader": "2.2.4",
     "copy-webpack-plugin": "^4.0.0",
     "coveralls": "2.11.14",
-    "cross-spawn": "4.0.2",
+    "cross-spawn": "5.0.0",
     "css-loader": "0.25.0",
     "del": "2.2.2",
     "extract-text-webpack-plugin": "2.0.0-beta.4",
@@ -77,13 +77,7 @@
     "test": "node scripts/test.js",
     "test-local-chrome": "node scripts/test.js local Chrome",
     "test-local-firefox": "node scripts/test.js local Firefox",
-    "pretest-e2e": "npm run webdriver:update -- --standalone",
-    "test-e2e:live": "npm run test-e2e -- --elementExplorer",
-    "test-e2e": "npm run protractor",
-    "webdriver-manager": "webdriver-manager",
-    "webdriver:start": "npm run webdriver-manager start",
-    "webdriver:update": "npm run webdriver-manager update",
-    "protractor": "protractor"
+    "test-e2e": "npm run test e2e"
   },
   "version": "1.0.2",
   "bugs": {

@@ -7,15 +7,16 @@ process.env.NODE_ENV = "test";
 if(argv._ && argv._.length > 0) //look release build
 {
     var subCommand = argv._[0];
-    var browser = "PhantomJS";
-    var testCMD = "karma start";
-    if(argv._.length == 2)
-    {
-        browser = argv._[1];
-    }
+
     if(subCommand.toLowerCase() === "local")
     {
 
+        var browser = "PhantomJS";
+        var testCMD = "karma start";
+        if(argv._.length == 2)
+        {
+            browser = argv._[1];
+        }
         testCMD = testCMD + " --browsers " + browser;
         util.series([testCMD], function(err){
 
@@ -29,8 +30,24 @@ if(argv._ && argv._.length > 0) //look release build
         });
     }
 
+    if(subCommand == "e2e")
+    {
+        var protractorCMD = "protractor";
+
+        util.series(["webdriver-manager update --standalone",protractorCMD],function (err) {
+
+            if(err)
+            {
+                console.log(err);
+                process.exit(1);
+            }
+
+            process.exit(0);
+        })
+    }
+
 }
-else //do dev build
+else
 {
 
     util.series(["karma start --single-run --no-auto-watch --browsers PhantomJS"], function(err){
