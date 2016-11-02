@@ -19,7 +19,7 @@ module.exports = function(config) {
             'test/**/*.tsx': ['webpack','sourcemap']
         },
 
-        webpack: require("./webpack.config"),
+        webpack: require("./webpack/test.config")({env:'test'}),
 
         coverageReporter: {
             dir : 'coverage/',

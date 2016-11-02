@@ -1,78 +1,16 @@
 
 
-var projectConfig = require("./project.config");
-
-var METADATA = {
-  env:process.env.NODE_ENV,
-  isProduction:process.env.NODE_ENV == 'production',
-  isTest:process.env.NODE_ENV == 'test'
-};
-
-const rules = require("./webpack/rules")(METADATA);
-const plugins = require("./webpack/plugins")(METADATA);
-
-var devEntries = [  'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
-  'webpack/hot/dev-server'
-];
-
-var entry = {
-  'main': [
-    projectConfig.srcClientDirMain
-  ]
-};
-
-if(!METADATA.isTest)
-{
-  entry.main = entry.main.concat([
-    projectConfig.srcClientDirIndex,
-    projectConfig.srcClientDirMainCSS
-  ])
+switch (process.env.NODE_ENV) {
+  case 'prod':
+  case 'production':
+    module.exports = require('./webpack/prod.config')({env: 'production'});
+    break;
+  case 'test':
+  case 'testing':
+    module.exports = require('./webpack/test.config')({env: 'test'});
+    break;
+  case 'dev':
+  case 'development':
+  default:
+    module.exports = require('./webpack/dev.config')({env: 'development'});
 }
-
-var output = {
-  path: projectConfig.distClientDir,
-  filename: '[name].js'
-};
-
-var resolve = {
-  extensions: [ '.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
-  modules: [
-    "src",
-    "node_modules"
-  ]
-};
-
-var node = {
-  global: true,
-  crypto: 'empty',
-  process: true,
-  module: false,
-  clearImmediate: false,
-  setImmediate: false
-};
-
-
-if(!METADATA.isProduction)
-{
-
-  output.sourceMapFilename = '[name].map';
-
-  //adding dev entries
-  for(var key in entry)
-  {
-    entry[key] = entry[key].concat(devEntries)
-  }
-
-}
-
-
-module.exports = {
-  entry:entry,
-  output: output,
-  resolve: resolve,
-  module: {
-    rules: rules
-  },
-  plugins: plugins,
-  node: node
-};

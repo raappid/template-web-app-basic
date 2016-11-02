@@ -15,7 +15,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 
-    <% if (htmlWebpackPlugin.options.metadata.isProduction) { %>
+    <% if (htmlWebpackPlugin.options.metadata.env == 'production') { %>
     <link rel="stylesheet" type="text/css" href="./assets/styles/main.css">
     <% } %>
 
