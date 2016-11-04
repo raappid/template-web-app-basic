@@ -1,6 +1,6 @@
 
 
-This is a basic starter template for getting quick start on full featured web application written in Typescript and using Webpack.
+This is a basic starter template for getting quick start on full featured web application written in [Typescript](https://www.typescriptlang.org/index.html) and using [Webpack](https://webpack.js.org/).
 
 #### How to use this template
 
