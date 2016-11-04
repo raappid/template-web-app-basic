@@ -37,8 +37,9 @@ module.exports = function(config) {
 
         remapCoverageReporter: {
             'text-summary': null,
+            lcovonly:"./coverage/lcov.info",
             html: './coverage/html',
-            cobertura: './coverage/cobertura.xml'
+            cobertura: './coverage/cobertura/cobertura-coverage.xml'
         }
     });
 };
