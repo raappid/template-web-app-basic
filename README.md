@@ -33,7 +33,7 @@ This is a basic starter template for getting quick start on full featured web ap
     - Unit Testing with Karma and Code coverage support.
     - E2E Automated testing configured with [Protractor](http://www.protractortest.org/#/). Yes It can be used with non-angular apps.
     - Continuous Integration (CI) configured to be used with [Travis CI](https://travis-ci.org/);
-    - Code Coverage reporting configured with [Coveralls](https://coveralls.io) 
+    - Code Coverage reporting configured to be used with [Coveralls](https://coveralls.io) 
 
 - Configured to release project to Github.
 - Configured to deploy your Github repository directly to [Heroku](https://www.heroku.com/) 
