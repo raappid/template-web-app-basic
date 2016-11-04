@@ -1,5 +1,4 @@
 
-import Promise = require("bluebird");
 
 export function sayHi():Promise<string>
 {

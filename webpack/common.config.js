@@ -31,7 +31,8 @@ module.exports = function (options) {
 
     var plugins = [
         new webpack.NoErrorsPlugin(),
-        new webpack.optimize.OccurrenceOrderPlugin()
+        new webpack.optimize.OccurrenceOrderPlugin(),
+
     ];
 
     if(!(options.env == "test"))
@@ -46,6 +47,34 @@ module.exports = function (options) {
 
         plugins.push(htmlWebPackPlugin);
     }
+
+     /*************************
+     * Common rules
+     **************************/
+
+    var typescriptLoader = {test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader',
+        query: {
+            tsconfig: projectConfig.rootDir+"/tsconfig.json"
+        }
+    };
+
+    if(options.env == "test" && !options.isLocalTesting) //adding inline source map only for test node environment
+    {
+        typescriptLoader.query.sourceMap = false;
+        typescriptLoader.query.inlineSourceMap = true;
+    }
+
+    var rules = [
+
+        typescriptLoader,
+
+        {
+            test: /\.html$/,
+            loader: "underscore-template-loader" // loaders: ['underscore-template-loader'] is also perfectly acceptable.
+        }
+
+    ];
 
 
     return {
@@ -62,22 +91,7 @@ module.exports = function (options) {
             ]
         },
         module: {
-            rules: [
-
-
-                { test: /\.tsx?$/,
-                    loader: 'awesome-typescript-loader',
-                    query: {
-                        tsconfig: projectConfig.rootDir+"/tsconfig.json"
-                    }
-                },
-
-                {
-                    test: /\.html$/,
-                    loader: "underscore-template-loader" // loaders: ['underscore-template-loader'] is also perfectly acceptable.
-                }
-
-            ]
+            rules: rules
         },
         plugins: plugins,
         node:  {

@@ -2,7 +2,6 @@
 
 import {EventDispatcher} from "../../comm_system/EventDispatcher";
 import {actionDispatcher} from "../../comm_system/index";
-import {IActionDispatcher} from "../../comm_system/interfaces/IActionDispatcher";
 
 export abstract class StoreBase extends EventDispatcher implements IStore
 {

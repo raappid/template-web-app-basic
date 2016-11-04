@@ -2,8 +2,6 @@
 var util = require('./util');
 var argv = require('minimist')(process.argv.slice(2));
 
-process.env.NODE_ENV = "test";
-
 if(argv._ && argv._.length > 0) //look release build
 {
     var subCommand = argv._[0];
@@ -49,8 +47,9 @@ if(argv._ && argv._.length > 0) //look release build
 }
 else
 {
+    process.env.NODE_ENV = "test";
 
-    util.series(["karma start --single-run --no-auto-watch --browsers PhantomJS"], function(err){
+    util.series(["npm run clean","karma start --single-run --no-auto-watch --browsers PhantomJS"], function(err){
 
         if(err)
         {

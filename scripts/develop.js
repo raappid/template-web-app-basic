@@ -16,19 +16,6 @@ util.exec("npm run build",function(){
 
     serve();
 
-/*    myWatch(["src/!**!/!*.html","src/!**!/!*.scss","src/!**!/!*.ts"],function(filePath){
-        util.exec("npm run build",function(err){
-            if(!err)
-            {
-                reload(filePath);
-            }
-            else
-            {
-                console.log(err);
-            }
-        })
-    });*/
-
 });
 
 

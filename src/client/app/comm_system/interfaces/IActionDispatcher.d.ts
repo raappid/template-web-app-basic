@@ -1,5 +1,4 @@
 
-import Promise = require("bluebird");
 declare interface IActionDispatcher extends IEventDispatcher
 {
     registerAction(actionName:string,handler:Function,context?:any):void;

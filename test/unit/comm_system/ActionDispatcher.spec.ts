@@ -1,12 +1,12 @@
 
 import any = jasmine.any;
 import Spy = jasmine.Spy;
-import Promise = require("bluebird");
+
 import {Errors} from "../../../src/client/app/comm_system/constants";
 import {ActionDispatcher} from "../../../src/client/app/comm_system/ActionDispatcher";
 
 describe('ActionDispatcher', function() {
-    console.log(Promise);
+
     var actionDispatcher:any = new ActionDispatcher();
     var throws;
 

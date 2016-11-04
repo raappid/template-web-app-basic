@@ -1,7 +1,7 @@
 
 
 import {myManager} from "../../../../src/client/app/service_system/index";
-import Promise = require("bluebird");
+
 describe('MyManager Integration Test cases', () => {
 
     describe("sayHello",()=>{

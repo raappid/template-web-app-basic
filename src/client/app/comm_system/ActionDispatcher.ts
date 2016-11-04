@@ -2,8 +2,7 @@
 
 import {Errors} from "./constants";
 import {EventDispatcher} from "./EventDispatcher";
-import Promise = require("bluebird");
-import {IActionDispatcher} from "./interfaces/IActionDispatcher";
+
 
 class HandlerObject{
     private _handler:Function;

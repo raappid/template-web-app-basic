@@ -1,5 +1,7 @@
 
 
+require("core-js/shim");
+
 import {EventConstants} from "./app/service_system/constants";
 import {myStore, myManager} from "./app/service_system/index";
 

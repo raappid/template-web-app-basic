@@ -1,33 +1,44 @@
 
+
+var reporters = [,'mocha','kjhtml'];
+var webpackConfig;
+var isLocalTesting = true;
+if(process.env.NODE_ENV == "test" || process.env.NODE_ENV == "testing") // this means it is not a local test environment
+{
+    reporters = reporters.concat(['coverage','remap-coverage']);
+    isLocalTesting = false;
+}
+
+webpackConfig = require("./webpack/test.config")({env:"test", isLocalTesting:isLocalTesting})
+
 module.exports = function(config) {
     config.set({
         basePath: '',
         autoWatch: true,
+        autoWatchBatchDelay:300,
 
         singleRun: false,
         frameworks: ['jasmine'],
 
-        files:['test/**/*.spec.ts','test/**/*.test.ts'],
+        files:[
+            {pattern: 'node_modules/core-js/client/shim.min.js', included:true, watched: false},
+            {pattern: './karma-test-shim.js', watched: false}],
 
-        reporters: ['coverage','mocha','kjhtml'],
+        reporters: reporters,
         preprocessors: {
-            // source files, that you wanna generate coverage for
-            // do not include tests or libraries
-            // (these files will be instrumented by Istanbul)
-            'src/**/*.js': ['coverage'],
-            'test/**/*.ts': ['webpack','sourcemap'],
-            'test/**/*.tsx': ['webpack','sourcemap']
+            './karma-test-shim.js': ['coverage','webpack','sourcemap']
         },
 
-        webpack: require("./webpack/test.config")({env:'test'}),
+        webpack: webpackConfig,
 
         coverageReporter: {
-            dir : 'coverage/',
-            reporters: [
-                { type: 'html', subdir: 'html' },
-                { type: 'lcovonly', subdir: 'lcov' },
-                { type: 'cobertura', subdir: 'cobertura' }
-            ]
+            type: 'in-memory'
+        },
+
+        remapCoverageReporter: {
+            'text-summary': null,
+            html: './coverage/html',
+            cobertura: './coverage/cobertura.xml'
         }
     });
 };

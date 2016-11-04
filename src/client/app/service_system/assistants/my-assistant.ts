@@ -2,7 +2,7 @@
 
 import helloService = require("../services/hello-service");
 import hiService = require("../services/hi-service");
-import Promise = require("bluebird");
+
 
 export function sayHelloAndHi():Promise<string>
 {
