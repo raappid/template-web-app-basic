@@ -3,7 +3,6 @@ var util = require('./util');
 
 util.exec("npm run build-release",function(error){
 
-
     if(error)
     {
         console.log(error);
