@@ -4,6 +4,7 @@ env:
   - NODE_ENV=CI
 node_js:
   - "6.9.1"
+  - "7.0.0"
 install:
   - npm run install-deps
 before_script:
@@ -11,7 +12,6 @@ before_script:
     - sh -e /etc/init.d/xvfb start
 after_script:
   - npm run coverage
-  - npm run deploy;
 deploy:
   provider: heroku
   api_key:
@@ -19,5 +19,9 @@ deploy:
   app:
     master: template-webapp-basic
   skip_cleanup: true
+  on:
+    tags: true
+    node: 6.9.1
+
 git:
   depth: 10
