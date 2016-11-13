@@ -12,7 +12,7 @@ util.exec("npm run build-release",function(error){
     {
         if(process.env.NODE_ENV === "CI")
         {
-            util.exec("firebase deploy --token $FIREBASE_TOKEN",function(error){
+            util.exec("npm run firebase deploy -- --token $FIREBASE_TOKEN",function(error){
 
                 if(error)
                 {
