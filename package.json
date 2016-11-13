@@ -82,8 +82,7 @@
     "test": "node scripts/test.js",
     "test-local-chrome": "node scripts/test.js local Chrome",
     "test-local-firefox": "node scripts/test.js local Firefox",
-    "test-e2e": "npm run test e2e",
-    "firebase":"firebase"
+    "test-e2e": "npm run test e2e"
   },
   "version": "2.1.5",
   "bugs": {
