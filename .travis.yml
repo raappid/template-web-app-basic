@@ -10,5 +10,7 @@ before_script:
     - sh -e /etc/init.d/xvfb start
 after_script:
   - npm run coverage
+  - if [ -n "$TRAVIS_TAG" ];
+    then npm run firebase deploy --token $FIREBASE_TOKEN;
 git:
   depth: 10

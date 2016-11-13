@@ -1,0 +1,8 @@
+{
+  "hosting": {
+    "public": "dist/client"
+  },
+  "database": {
+    "rules": "database.rules.json"
+  }
+}
