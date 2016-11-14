@@ -3,7 +3,7 @@
 
 #### Requirement
 
-- Before Proceeding Further please make sure the Continuous integration is setup for you project
+- Before Proceeding Further please make sure the Continuous integration is setup for you project, as CI is also used for deployment
 - [Setup Continuous Integration](docs/CI.md)
 
 #### To Deploy your Project to Heroku

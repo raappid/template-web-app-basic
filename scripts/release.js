@@ -25,7 +25,7 @@ if(argv._ && argv._.length > 0) //look release build
 
         "git merge --no-ff master production",
 
-        "git push --follow-tags",
+        "git push",
 
         ['git branch -D production',"production branch deleted..release Done!!"]
 
