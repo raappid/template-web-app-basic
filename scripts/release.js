@@ -13,9 +13,7 @@ if(argv._ && argv._.length > 0) //look release build
 
         ["git checkout master","checked out master branch"],
 
-        "git fetch origin",
-
-        ["git checkout -b production origin/production","checked out production branch"],
+        ["git checkout -b production","checked out production branch"],
 
         ["git rebase master", "Rebasing from Master"],
 
