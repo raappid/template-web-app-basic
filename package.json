@@ -71,8 +71,8 @@
     "clean": "node scripts/clean.js",
     "develop": "node scripts/develop.js",
     "build": "node scripts/build.js",
-    "build-all":"cross-env NODE_ENV=build-all npm run build",
-    "build-release":"cross-env NODE_ENV=production npm run build",
+    "build-all": "cross-env NODE_ENV=build-all npm run build",
+    "build-release": "cross-env NODE_ENV=production npm run build",
     "test": "cross-env NODE_ENV=test node scripts/test.js",
     "test-chrome": "cross-env TEST_BROWSER=Chrome node scripts/test.js",
     "test-firefox": "cross-env TEST_BROWSER=Firefox node scripts/test.js",
@@ -82,7 +82,7 @@
     "release-patch": "node scripts/release.js patch",
     "report-coverage": "node scripts/report-coverage.js"
   },
-  "version": "2.1.13",
+  "version": "2.1.14",
   "bugs": {
     "url": ""
   },
