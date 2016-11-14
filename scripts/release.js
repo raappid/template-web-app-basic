@@ -11,7 +11,7 @@ if(argv._ && argv._.length > 0) //look release build
 
         "npm test",
 
-        ["git checkout -b master origin/master","checked out master branch"],
+        ["git checkout master","checked out master branch"],
 
         ["git checkout -b production origin/production","checked out production branch"],
 
