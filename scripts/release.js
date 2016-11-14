@@ -23,9 +23,11 @@ if(argv._ && argv._.length > 0) //look release build
 
         ['git checkout master',"checked out master branch.."],
 
-        "git merge --no-ff production",
+        "git merge --no-ff origin/production",
 
-        ['git branch -D production',"release branch deleted..release Done!!"]
+        "git push --follow-tags",
+
+        ['git branch -D origin/production',"release branch deleted..release Done!!"]
 
     ],function(err){
         if(err)
