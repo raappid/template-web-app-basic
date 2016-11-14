@@ -3,6 +3,7 @@
 var reporters = [,'mocha','kjhtml'];
 var webpackConfig;
 var isLocalTesting = true;
+
 if(process.env.NODE_ENV == "test" || process.env.NODE_ENV == "testing") // this means it is not a local test environment
 {
     reporters = reporters.concat(['coverage','remap-coverage']);

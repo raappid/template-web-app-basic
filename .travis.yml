@@ -4,9 +4,16 @@ language: node_js
 
 env:
   - NODE_ENV=CI
+
 node_js:
   - "6.9.1"
   - "7.0.0"
+
+branches:
+  only:
+  - master
+  - production
+
 install:
   - npm run install-deps
 
@@ -15,7 +22,7 @@ before_script:
     - sh -e /etc/init.d/xvfb start
 
 after_script:
-  - npm run coverage
+  - npm run report-coverage
 
 before_deploy:
   - npm run build-release
@@ -25,7 +32,7 @@ deploy:
   api_key:
     secure: $HEROKU_API_KEY
   app:
-    production: template-webapp-basic
+    production: $HEROKU_WEB_APP_NAME
   skip_cleanup: true
   on:
     branch: production

@@ -1,60 +1,53 @@
 
 var util = require('./util');
-var argv = require('minimist')(process.argv.slice(2));
 var sass = require('node-sass');
 var path = require("path");
 var fs = require("fs-extra");
 var projectConfig = require("../project.config");
 
-var subCommand;
-if(argv._ && argv._.length > 0) //look for release build
-{
-    subCommand = argv._[0].toLowerCase();
-    if(subCommand === "release")
+
+util.exec("npm run clean", function (err) {
+
+    if(err)
     {
-        process.env.NODE_ENV = "production";
-        buildRelease();
-    }
-    else if(subCommand == "local")
-    {
-        util.exec("npm run clean", function (err) {
-
-            if(err)
-            {
-                console.log(err);
-                process.exit(1);
-            }
-
-            util.callTasksInSeries([
-                {fn:buildTypescript},
-                {fn:buildSASS}
-            ],function(err){
-
-                util.finishTask(null,err,true);
-            })
-
-        });
+        console.log(err);
+        process.exit(1);
     }
 
-}
-else // will build only the typescript the src/api directory, use npm run build-local to build locally all typescript and scss files
-{
-    util.exec("npm run clean", function (err) {
+    var tasks;
 
-        if(err)
-        {
-            console.log(err);
-            process.exit(1);
-        }
+    if(process.env.NODE_ENV === "production")
+    {
+        tasks = [
+            {fn:buildTypescript,
+                args:[true]
+            },
+            {fn:bundleFiles}
 
-        buildTypescript(function(err){
-            util.finishTask(null,err,true);
-        });
+        ]
+    }
+    else if(process.env.NODE_ENV === "build-all") // will build all typescript and sass files
+    {
 
-    });
-}
+        tasks = [
+            {fn:buildTypescript,args:[false,true]},
+            {fn:buildSASS}
+        ];
+    }
+    else
+    {
+        tasks = [
+            {fn:buildTypescript}
+        ];
 
+    }
 
+    util.callTasksInSeries(tasks,function(err){
+
+        util.finishTask(null,err,true);
+    })
+
+});
 
 function buildSASS(cb) {
 
@@ -82,11 +75,11 @@ function buildSASS(cb) {
 
 }
 
-function buildTypescript(cb,isRelease){
+function buildTypescript(cb,isRelease,buildAll){
 
     var cmd = "tsc";
 
-    if(subCommand !== "local")
+    if(!buildAll)
     {
         cmd = cmd + " -p src/api"; // only need to build api as client code is taken care by webpack
     }
@@ -110,27 +103,5 @@ function bundleFiles(cb){
         {
             cb();
         }
-    });
-}
-
-function buildRelease(){
-
-    util.exec("npm run clean", function (err) {
-
-        var distDir = path.resolve("./dist");
-
-
-        util.callTasksInSeries(
-            [
-                {fn:buildTypescript,
-                    args:[true]
-                },
-                {fn:bundleFiles}
-
-            ]
-            ,function(err){
-                util.finishTask(null,err,true);
-            });
-
     });
 }

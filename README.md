@@ -1,6 +1,9 @@
 
 
-This is a basic starter template for getting quick start on full featured web application written in [Typescript](https://www.typescriptlang.org/index.html) and using [Webpack](https://webpack.js.org/).
+#### About
+- This is a basic starter template for getting quick start on full featured web application written in [Typescript](https://www.typescriptlang.org/index.html) and using [Webpack](https://webpack.js.org/).
+- This template also include full Software Development Lifecycle support. Which means you can quickly develop, test and deploy your application to production
+
 
 #### How to use this template
 
@@ -36,14 +39,31 @@ This is a basic starter template for getting quick start on full featured web ap
     - Code Coverage reporting configured to be used with [Coveralls](https://coveralls.io) 
 
 - Configured to release project to Github.
-- Configured to deploy your Github repository directly to [Heroku](https://www.heroku.com/) 
+- Configured to deploy your application directly to [Heroku](https://www.heroku.com/), from production branch 
  
-###How To:
+####To start developing
+
+1. Open terminal and Change directory to your project directory
+
+2. if the dependencies are not installed in the project run
+
+    ```
+    npm install 
+    ```
+3. Start your development server by running:
+       ```
+       npm run develop
+       ``` 
+4. Open your app in your Favourite Browser
+
+5. Since Live reload is enabled, any Code changes will be picked up and your app will be automatically refreshed. 
+ 
+###Detailed Documentation:
    
 -  [Start Developing](docs/development.md)
 -  [Setup Continuous Integration](docs/CI.md)
--  [Release to Github](docs/release.md)
--  [Deploy your project to Heroku](docs/deploy.md)
+-  [Release Project](docs/release.md)
+-  [Setup Heroku Deployment](docs/deploy.md)
 
     
 #    
