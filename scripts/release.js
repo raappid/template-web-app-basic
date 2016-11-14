@@ -13,9 +13,11 @@ if(argv._ && argv._.length > 0) //look release build
 
         ["git checkout master","checked out master branch"],
 
-        "git fetch",
+        "git fetch origin",
 
-        ["git checkout --track -b origin/production","checked out production branch"],
+        ["git checkout -b production origin/production","checked out production branch"],
+
+        ["git rebase master", "Rebasing from Master"],
 
         [cmd,"increasing version number and tagging"],
 
@@ -23,11 +25,11 @@ if(argv._ && argv._.length > 0) //look release build
 
         ['git checkout master',"checked out master branch.."],
 
-        "git merge --no-ff origin/production",
+        "git merge --no-ff master production",
 
         "git push --follow-tags",
 
-        ['git branch -D origin/production',"release branch deleted..release Done!!"]
+        ['git branch -D production',"production branch deleted..release Done!!"]
 
     ],function(err){
         if(err)
