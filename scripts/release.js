@@ -23,7 +23,7 @@ if(argv._ && argv._.length > 0) //look release build
 
         ['git checkout master',"checked out master branch.."],
 
-        "git merge --no-ff master production",
+        "git merge --no-ff --no-edit master production",
 
         "git push",
 
