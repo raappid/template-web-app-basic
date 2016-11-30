@@ -27,7 +27,7 @@ module.exports = function (options) {
     **************************/
     devConfig.plugins.push(new webpack.SourceMapDevToolPlugin({
         filename: null, // if no value is provided the sourcemap is inlined
-        test: /\.(ts|js)($|\?)/i // process .js and .ts files only
+        test: /\.(tsx?|js)($|\?)/i // process .js and .ts files only
     }));
 
     devConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
