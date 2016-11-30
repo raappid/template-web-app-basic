@@ -82,7 +82,7 @@
     "release-patch": "node scripts/release.js patch",
     "report-coverage": "node scripts/report-coverage.js"
   },
-  "version": "2.2.2",
+  "version": "2.2.3",
   "bugs": {
     "url": ""
   },
