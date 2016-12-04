@@ -10,8 +10,8 @@ var paths = del.sync([
     projectConfig.srcDir +'/**/*.js',
     '!'+ projectConfig.srcDir +'/**/libs/**/*',
     projectConfig.srcDir +'/**/*.map',
-    projectConfig.testDir+"/**/*.js",
-    projectConfig.testDir +'/**/*.map',
+    projectConfig.testsDir+"/**/*.js",
+    projectConfig.testsDir +'/**/*.map',
     projectConfig.distDir,'temp',"reporters"]);
 
 console.log('Deleted files/folders:\n', paths.join('\n'));
