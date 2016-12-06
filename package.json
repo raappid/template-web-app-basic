@@ -81,7 +81,7 @@
     "release-patch": "cross-env RELEASE_TYPE=patch node scripts/release.js",
     "report-coverage": "node scripts/report-coverage.js"
   },
-  "version": "2.2.5",
+  "version": "2.2.6",
   "bugs": {
     "url": ""
   },
