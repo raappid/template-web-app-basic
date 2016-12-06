@@ -14,7 +14,7 @@ var apiDir = "api";
 config.rootDir = rootDir;
 config.distDir = distDir;
 config.srcDir = srcDir;
-config.testsDir = rootDir + "/test";
+config.testsDir = rootDir + "/tests";
 
 config.srcClientDir = srcDir + '/' + clientDir;
 config.srcClientDirMain = config.srcClientDir + "/main.ts";
