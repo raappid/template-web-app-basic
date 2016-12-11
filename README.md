@@ -8,18 +8,19 @@
 #### How to use this template
 
 1. Using [Raappid](https://github.com/coolchem/raappid), a project scaffolding tool.
+
+    1. install raappid if not already installed: 
     
-    ```
-    1. install raappid if not already installed
+        ```
+        npm install -g raappid
+        ```
         
-             npm install -g raappid
-                
-                
     2. In your terminal go to to directory where you want to create your project and run command
-            
-            raappid web-app your-project-name       
     
-    ```
+       ```
+        raappid web-app project-name
+       ```
+
 2. Clone or download the repository and run command as below to setup all your dependencies
 
     ```
@@ -30,7 +31,7 @@
 - No Frontend Framework is used. The choice is yours.
 - Styling is Powered by [Sass](http://sass-lang.com/)  
 - API is powered by [Express](http://expressjs.com/) 
-- For Development
+- Development features
     - [Webpack](https://webpack.js.org/) for module management. [Docs](https://webpack.js.org/configuration/)   
     - Live reload.
     - Unit Testing with Karma and Code coverage support.
@@ -41,7 +42,7 @@
 - Configured to release project to Github.
 - Configured to deploy your application directly to [Heroku](https://www.heroku.com/), from production branch 
  
-####To start developing
+#### To start developing
 
 1. Open terminal and Change directory to your project directory
 
@@ -51,19 +52,19 @@
     npm install 
     ```
 3. Start your development server by running:
-       ```
-       npm run develop
-       ``` 
+   ```
+   npm run develop
+   ``` 
 4. Open your app in your Favourite Browser
 
 5. Since Live reload is enabled, any Code changes will be picked up and your app will be automatically refreshed. 
  
-###Detailed Documentation:
+### Detailed Documentation:
    
--  [Start Developing](docs/development.md)
--  [Setup Continuous Integration](docs/CI.md)
--  [Release Project](docs/release.md)
--  [Setup Heroku Deployment](docs/deploy.md)
+-  [Start Developing](template-docs/development.md)
+-  [Setup Continuous Integration](template-docs/CI.md)
+-  [Release Project](template-docs/release.md)
+-  [Setup Heroku Deployment](template-docs/deploy.md)
 
     
 #    

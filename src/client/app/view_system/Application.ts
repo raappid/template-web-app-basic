@@ -2,6 +2,7 @@
 import {EventConstants} from "../service_system/constants";
 import {myStore, myManager} from "../service_system";
 
+
 export class Application {
 
     private appNode:HTMLElement;
@@ -9,6 +10,9 @@ export class Application {
     private sayHiButton:HTMLButtonElement;
     private sayHiResponseLabel:HTMLSpanElement;
 
+    /*
+     * This Is an application yayayaya
+     * */
     constructor(appNode:HTMLElement) {
         this.appNode = appNode;
         this.sayHiButton = document.getElementById("sayHiButton") as HTMLButtonElement;
@@ -16,6 +20,9 @@ export class Application {
 
     }
 
+    /*
+     * This Is an application yayayaya
+     * */
     initialize():void {
 
         myStore.addEventListener(EventConstants.MyStore.HI_HELLO, (result) => {

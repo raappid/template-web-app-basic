@@ -47,6 +47,7 @@
     "style-loader": "0.13.1",
     "ts-node": "1.7.2",
     "tslint": "4.0.2",
+    "typedoc": "^0.5.1",
     "typescript": "2.1.1",
     "underscore-template-loader": "0.7.3",
     "webpack": "2.1.0-beta.27",
@@ -80,6 +81,7 @@
     "release-major": "cross-env RELEASE_TYPE=major node scripts/release.js",
     "release-minor": "cross-env RELEASE_TYPE=minor node scripts/release.js",
     "release-patch": "cross-env RELEASE_TYPE=patch node scripts/release.js",
+    "generate-docs": "typedoc --options typedoc.json --exclude './tests/**/*' ./src/",
     "report-coverage": "node scripts/report-coverage.js"
   },
   "version": "2.2.7",
