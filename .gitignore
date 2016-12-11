@@ -14,3 +14,4 @@ dist
 temp
 npm-debug.log
 .env
+docs

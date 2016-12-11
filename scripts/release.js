@@ -1,11 +1,6 @@
 
 var util = require('./util');
 
-var ghpages = require('gh-pages');
-var path = require('path');
-
-
-
 if(process.env.RELEASE_TYPE) //look release build
 {
 
@@ -40,17 +35,7 @@ if(process.env.RELEASE_TYPE) //look release build
             process.exit(1);
         }
 
-        ghpages.publish(path.join(__dirname, 'docs'), function(err) {
-
-            if(err)
-            {
-                console.log(err);
-                process.exit(1);
-            }
-
-            process.exit(0);
-        });
-
+        process.exit(0);
     });
 
 }
