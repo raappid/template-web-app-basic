@@ -2,7 +2,6 @@
 import {EventConstants} from "../service_system/constants";
 import {myStore, myManager} from "../service_system";
 
-
 export class Application {
 
     private appNode:HTMLElement;
