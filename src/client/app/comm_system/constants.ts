@@ -1,5 +1,4 @@
 
-
 export const Errors = {
 
     ERROR_REGISTERING_ACTION_NAME_NOT_TYPE_STRING:"Error registering action: The action name should be of type string",

@@ -1,11 +1,10 @@
 
-
-//importing managers
+// importing managers
 import {MyStore} from "./stores/MyStore";
 import {MyManager} from "./managers/MyManager";
 
-//Stores
+// Stores
 export const myStore:IMyStore = new MyStore();
 
-//managers
+// managers
 export const myManager:IMyManager = new MyManager();

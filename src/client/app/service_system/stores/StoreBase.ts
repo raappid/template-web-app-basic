@@ -1,21 +1,20 @@
 
-
 import {EventDispatcher} from "../../comm_system/EventDispatcher";
-import {actionDispatcher} from "../../comm_system/index";
+import {actionDispatcher} from "../../comm_system";
 
-export abstract class StoreBase extends EventDispatcher implements IStore
-{
+export abstract class StoreBase extends EventDispatcher implements IStore {
+
     protected actionDispatcher:IActionDispatcher = actionDispatcher;
-    
-    constructor(){
+
+    constructor() {
         super();
         this.registerHandlers();
     }
-    
+
     protected abstract registerHandlers():void;
-    
-    protected registerAction(actionName:string, handler:(...args:any[])=>any):void
-    {
-        this.actionDispatcher.registerAction(actionName,handler,this);
+
+    protected registerAction(actionName:string, handler:(...args:any[]) => any):void {
+
+        this.actionDispatcher.registerAction(actionName, handler, this);
     }
 }

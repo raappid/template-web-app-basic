@@ -4,38 +4,37 @@ import hiService = require("../../../../src/client/app/service_system/services/h
 import myAssistant = require("../../../../src/client/app/service_system/assistants/my-assistant");
 import Spy = jasmine.Spy;
 
+describe("my-assistant Test cases", () => {
 
-describe('my-assistant Test cases', () => {
+    describe("sayHelloAndHi", () => {
 
-    describe("sayHelloAndHi",()=>{
+        beforeEach(() => {
 
-        beforeEach(()=>{
-
-            spyOn(helloService,"sayHello").and.returnValue("helloStub");
+            spyOn(helloService, "sayHello").and.returnValue("helloStub");
 
         });
 
-        it("should resolve with hello and hi",(done)=>{
+        it("should resolve with hello and hi", (done) => {
 
-            spyOn(hiService,"sayHi").and.returnValue(Promise.resolve("hiStub"));
-            myAssistant.sayHelloAndHi().then((result)=>{
+            spyOn(hiService, "sayHi").and.returnValue(Promise.resolve("hiStub"));
+            myAssistant.sayHelloAndHi().then((result) => {
 
                 expect(result).toEqual("helloStub hiStub");
                 done();
-            })
+            });
 
         });
 
-        it("should reject with error, if hi service rejected with error",(done)=>{
+        it("should reject with error, if hi service rejected with error", (done) => {
 
-            spyOn(hiService,"sayHi").and.returnValue(Promise.reject(new Error("yay")));
+            spyOn(hiService, "sayHi").and.returnValue(Promise.reject(new Error("yay")));
 
-            myAssistant.sayHelloAndHi().then(null,(error)=>{
+            myAssistant.sayHelloAndHi().then(null, (error) => {
 
                 expect(error).toEqual(jasmine.any(Error));
                 expect(error.message).toEqual("yay");
                 done();
-            })
+            });
         });
 
     });

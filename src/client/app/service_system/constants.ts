@@ -1,5 +1,4 @@
 
-
 export const Actions = {
     SAY_HI_AND_HELLO:"actions_sayHiAndHello"
 };

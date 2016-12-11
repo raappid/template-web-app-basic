@@ -1,23 +1,19 @@
 
-
-var whatwgFetch = require("whatwg-fetch");
+let whatwgFetch = require("whatwg-fetch");
 
 declare var fetch:any;
 
-
 export class HttpClient implements IHttpClient {
 
-
     get(url:string):Promise<any> {
-        var init:RequestInit = {};
+        let init:RequestInit = {};
         init.credentials = "same-origin";
-        return  this.fetchData(url,init);
+        return  this.fetchData(url, init);
     }
 
     fetchData(input:string, init?:RequestInit):Promise<any> {
-        
-        if(!init)
-        {
+
+        if (!init) {
             init = {};
         }
 
@@ -29,18 +25,17 @@ export class HttpClient implements IHttpClient {
 function checkStatus(response:Response) {
     if (response.status >= 200 && response.status < 300) {
 
-        return response
+        return response;
     } else {
-        var error:any = new Error(response.statusText);
+        let error:any = new Error(response.statusText);
         error.response = response;
-        throw error
+        throw error;
     }
 }
-function  parseJSON(response:Response) {
-    return response.json().then((result:any)=>{
+
+function parseJSON(response:Response) {
+
+    return response.json().then((result:any) => {
         return result.result;
-    })
+    });
 }
-
-
-

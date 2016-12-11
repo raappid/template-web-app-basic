@@ -1,11 +1,9 @@
 
 import {Errors} from "./constants";
 
-
-class HandlerObject{
+class HandlerObject {
     private _handler:Function;
     private _context:any;
-
 
     get handler():Function {
         return this._handler;
@@ -21,61 +19,58 @@ class HandlerObject{
     }
 }
 
-export class EventDispatcher implements IEventDispatcher
-{
+export class EventDispatcher implements IEventDispatcher {
 
     protected handlers:any = {};
 
     dispatchEvent(eventName:string, ...args: any[]):void {
 
-        if(!this.isValidActionOrEventName(eventName))
+        if (!this.isValidActionOrEventName(eventName))
             throw new Error(Errors.ERROR_PUBLISHING_EVENT_NAME_NOT_TYPE_STRING);
 
         let handlers:Array<HandlerObject>;
 
         handlers = this.getHandlers(eventName);
 
-        if(handlers)
-        {
-            for(var i=0; i< handlers.length; i++)
-            {
-                var handler:HandlerObject = handlers[i];
+        if (handlers) {
 
-                handler.handler.call(handler.context,...args);
+            for (let i = 0; i < handlers.length; i++) {
+                let handler:HandlerObject = handlers[i];
+
+                handler.handler.call(handler.context, ...args);
             }
 
         }
 
     }
 
-    addEventListener(eventName:string, callback:(...args:any[])=>any,context?:any):void {
+    addEventListener(eventName:string, callback:(...args:any[]) => any, context?:any):void {
 
-        if(!this.isValidActionOrEventName(eventName))
+        if (!this.isValidActionOrEventName(eventName))
             throw new Error(Errors.ERROR_SUBSCRIBING_EVENT_NAME_NOT_TYPE_STRING);
 
-        if(callback === undefined || callback === null)
+        if (callback === undefined || callback === null)
             throw new Error(Errors.ERROR_NO_HANDLER_WHILE_SUBSCRIBING);
 
-        if(typeof callback !== 'function')
+        if (typeof callback !== "function")
             throw new Error(Errors.ERROR_SUBSCRIBING_HANDLER_NOT_TYPE_FUNCTION);
 
-        this.toggleSubscription(eventName,callback,true,context);
+        this.toggleSubscription(eventName, callback, true, context);
 
     }
 
-
     removeEventListener(eventName:string, callback:Function):void {
 
-        if(!this.isValidActionOrEventName(eventName))
+        if (!this.isValidActionOrEventName(eventName))
             throw new Error(Errors.ERROR_UNSUBSCRIBING_EVENT_NAME_NOT_TYPE_STRING);
 
-        if(callback === undefined || callback === null)
+        if (callback === undefined || callback === null)
             throw new Error(Errors.ERROR_NO_HANDLER_WHILE_UNSUBSCRIBING);
 
-        if(typeof callback !== 'function')
+        if (typeof callback !== "function")
             throw new Error(Errors.ERROR_UNSUBSCRIBING_HANDLER_NOT_TYPE_FUNCTION);
 
-        this.toggleSubscription(eventName,callback,false);
+        this.toggleSubscription(eventName, callback, false);
 
     }
 
@@ -83,47 +78,44 @@ export class EventDispatcher implements IEventDispatcher
         return this.handlers[eventName] !== undefined && this.handlers[eventName].length > 0;
     }
 
-    private toggleSubscription(eventName:string,callback:Function,subscribe:boolean,context?:any):void
-    {
+    private toggleSubscription(eventName:string, callback:Function, subscribe:boolean, context?:any):void {
         let handlers:Array<HandlerObject> = this.getHandlers(eventName);
 
-        for(var i= 0; i<handlers.length ; i++)
-        {
-            var handler:HandlerObject = handlers[i];
+        for (let i = 0; i < handlers.length ; i++) {
 
-            if(handler.handler === callback)
-            {
-                if(subscribe === false)
-                {
-                    handlers.splice(handlers.indexOf(handler),1);
+            let handler:HandlerObject = handlers[i];
+
+            if (handler.handler === callback) {
+
+                if (subscribe === false) {
+
+                    handlers.splice(handlers.indexOf(handler), 1);
                 }
 
                 return;
             }
         }
 
-        handlers.push(new HandlerObject(callback,context));
+        handlers.push(new HandlerObject(callback, context));
     }
-    private getHandlers(eventName:string):Array<HandlerObject>
-    {
+    private getHandlers(eventName:string):Array<HandlerObject> {
         let handlers:Array<HandlerObject>;
 
         handlers = this.handlers[eventName];
 
-        if(handlers === null || handlers === undefined)
+        if (handlers === null || handlers === undefined)
             this.handlers[eventName] = handlers = [];
 
         return handlers;
     }
 
+    hasEventListener(eventName:string):boolean {
 
-    hasEventListener(eventName:string):boolean
-    {
         return this.handlers[eventName] !== undefined && this.handlers[eventName].length > 0;
     }
 
-    protected isValidActionOrEventName(eventName:string):boolean
-    {
-        return eventName !== undefined && eventName !== null && typeof eventName === 'string';
+    protected isValidActionOrEventName(eventName:string):boolean {
+
+        return eventName !== undefined && eventName !== null && typeof eventName === "string";
     }
 }

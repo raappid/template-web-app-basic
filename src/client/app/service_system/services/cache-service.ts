@@ -1,5 +1,5 @@
 
-var storage = require("store2");
+let storage = require("store2");
 
 /***
  * This function is used to store Data to corresponding key in browsers local storage,
@@ -9,17 +9,17 @@ var storage = require("store2");
  * @param value
  * @param cacheNamespace if provided, namespace in the cache is used (created if not available) to store the key and value.
  */
-export function store(key:string,value:any,cacheNamespace?:string):void
-{
-    var store = storage;
+export function store(key:string, value:any, cacheNamespace?:string):void {
 
-    if(cacheNamespace)
-    {
+    let store = storage;
+
+    if (cacheNamespace) {
+
          store = storage.namespace(cacheNamespace);
     }
 
-    if(store)
-        store(key,value);
+    if (store)
+        store(key, value);
 }
 
 /**
@@ -35,17 +35,16 @@ export function store(key:string,value:any,cacheNamespace?:string):void
  * @param value
  * @param cacheNamespace
  */
-export function storeSession(key:string,value:any,cacheNamespace?:string):void
-{
-    var store:Function = storage.session;
+export function storeSession(key:string, value:any, cacheNamespace?:string):void {
 
-    if(cacheNamespace)
-    {
+    let store:Function = storage.session;
+
+    if (cacheNamespace) {
         store = storage.session.namespace(cacheNamespace);
     }
 
-    if(store)
-        store(key,value);
+    if (store)
+        store(key, value);
 }
 
 /**
@@ -54,16 +53,16 @@ export function storeSession(key:string,value:any,cacheNamespace?:string):void
  * @param key
  * @param cacheNamespace if Provided, if namespace is found in the cache, the key and its corresponding value is removed
  */
-export function remove(key:string, cacheNamespace?:string):void
-{
-    var store = storage;
+export function remove(key:string, cacheNamespace?:string):void {
 
-    if(cacheNamespace)
-    {
+    let store = storage;
+
+    if (cacheNamespace) {
+
         store = storage.namespace(cacheNamespace);
     }
 
-    if(store)
+    if (store)
         store.remove(key);
 }
 
@@ -73,15 +72,15 @@ export function remove(key:string, cacheNamespace?:string):void
  * @param key
  * @param cacheNamespace if Provided, if namespace is found in the cache, the key and its corresponding value is removed
  */
-export function removeSession(key:string, cacheNamespace?:string):void{
-    var store = storage.session;
+export function removeSession(key:string, cacheNamespace?:string):void {
 
-    if(cacheNamespace)
-    {
+    let store = storage.session;
+
+    if (cacheNamespace) {
         store = storage.session.namespace(cacheNamespace);
     }
 
-    if(store)
+    if (store)
         store.remove(key);
 }
 
@@ -91,16 +90,15 @@ export function removeSession(key:string, cacheNamespace?:string):void{
  * @param key
  * @param cacheNamespace if Provided, if namespace is found in the cache, data is retrieved from that namespace.
  */
-export function getFromStore(key:string,cacheNamespace?:string):any
-{
-    var store = storage;
+export function getFromStore(key:string, cacheNamespace?:string):any {
 
-    if(cacheNamespace)
-    {
+    let store = storage;
+
+    if (cacheNamespace) {
         store = storage.namespace(cacheNamespace);
     }
 
-    if(store)
+    if (store)
         return store(key);
 }
 
@@ -110,15 +108,15 @@ export function getFromStore(key:string,cacheNamespace?:string):any
  * @param key
  * @param cacheNamespace if Provided, if namespace is found in the cache, data is retrieved from that namespace.
  */
-export function getFromSession(key:string,cacheNamespace?:string):any
-{
-    var store:Function = storage.session;
+export function getFromSession(key:string, cacheNamespace?:string):any {
 
-    if(cacheNamespace)
-    {
+    let store:Function = storage.session;
+
+    if (cacheNamespace) {
+
         store = storage.session.namespace(cacheNamespace);
     }
 
-    if(store)
+    if (store)
         return store(key);
 }

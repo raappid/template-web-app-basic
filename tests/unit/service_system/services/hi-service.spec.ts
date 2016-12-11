@@ -1,16 +1,15 @@
 
-import hiService = require("../../../../src/client/app/service_system/services/hi-service")
+import hiService = require("../../../../src/client/app/service_system/services/hi-service");
 import Spy = jasmine.Spy;
-describe('hi-service Test cases', () => {
+describe("hi-service Test cases", () => {
 
-    describe("sayHi",()=>{
+    describe("sayHi", ( ) => {
 
+        it("should resolve with hi", ( done ) => {
 
-        it("should resolve with hi",(done)=>{
+            let logSpy:Spy = spyOn(console, "log");
 
-            var logSpy:Spy = spyOn(console,"log");
-
-            hiService.sayHi().then((result)=>{
+            hiService.sayHi().then((result) => {
 
                 expect(result).toEqual("hi");
                 expect(logSpy).toHaveBeenCalledWith("hi-service saying hi...");
