@@ -40,7 +40,7 @@ module.exports = function (options) {
     devConfig.module.rules.push({
 
         test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
+        loaders: ["style-loader", "css-loader", "sass-loader"]
     });
 
     return devConfig;
