@@ -31,10 +31,10 @@ exports.exec = function(cmd, cb){
 // execute multiple commands in series
 // this could be replaced by any flow control lib
 exports.series = function(cmds, cb){
-    var execNext = function(){
+    let execNext = function(){
 
-        var cmd = cmds.shift();
-        var doneMessage;
+        let cmd = cmds.shift();
+        let doneMessage;
         if(Array.isArray(cmd))
         {
             cmd = cmd[0];
@@ -44,9 +44,11 @@ exports.series = function(cmds, cb){
             if (err) {
                 cb(err);
             } else {
-                if (cmds.length) execNext();
+                if(doneMessage) console.log(doneMessage);
+                if (cmds.length) {
+                    execNext();
+                }
                 else{
-                    if(doneMessage) console.log(doneMessage);
                     cb(null);
                 }
             }

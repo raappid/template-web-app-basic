@@ -6,8 +6,8 @@ env:
   - NODE_ENV=CI
 
 node_js:
-  - "6.9.1"
-  - "7.0.0"
+  - "8.0.0"
+  - "8.1.0"
 
 branches:
   only:
@@ -36,7 +36,7 @@ deploy:
   skip_cleanup: true
   on:
     branch: production
-    node: 6.9.1
+    node: 8.0.0
 
 git:
   depth: 10

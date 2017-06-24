@@ -1,30 +1,18 @@
 
 var util = require('./util');
 
-if(process.env.TEST_E2E) // look for End to End testing
-{
-    var protractorCMD = "protractor";
-
-    util.series(["webdriver-manager update --standalone",protractorCMD],function (err) {
-
-        if(err)
-        {
-            console.log(err);
-            process.exit(1);
-        }
-
-        process.exit(0);
-    })
-}
-else
-{
-    if(process.env.TEST_BROWSER)
+util.exec("npm run lint",(err) =>{
+    if(err)
     {
+        console.log(err);
+        process.exit(1);
+    }
 
-        var testCMD = "karma start";
+    if(process.env.TEST_E2E) // look for End to End testing
+    {
+        var protractorCMD = "protractor";
 
-        testCMD = testCMD + " --browsers " + process.env.TEST_BROWSER;
-        util.series([testCMD], function(err){
+        util.series(["webdriver-manager update --standalone",protractorCMD],function (err) {
 
             if(err)
             {
@@ -33,23 +21,44 @@ else
             }
 
             process.exit(0);
-        });
+        })
     }
     else
     {
+        if(process.env.TEST_BROWSER)
+        {
 
-        util.series(["npm run clean","karma start --single-run --no-auto-watch --browsers PhantomJS"], function(err){
+            var testCMD = "karma start";
 
-            if(err)
-            {
-                console.log(err);
-                process.exit(1);
-            }
+            testCMD = testCMD + " --browsers " + process.env.TEST_BROWSER;
+            util.series([testCMD], function(err){
 
-            process.exit(0);
-        });
+                if(err)
+                {
+                    console.log(err);
+                    process.exit(1);
+                }
+
+                process.exit(0);
+            });
+        }
+        else
+        {
+
+            util.series(["npm run clean","karma start --single-run --no-auto-watch --browsers PhantomJS"], function(err){
+
+                if(err)
+                {
+                    console.log(err);
+                    process.exit(1);
+                }
+
+                process.exit(0);
+            });
+        }
+
     }
+});
 
-}
 
 

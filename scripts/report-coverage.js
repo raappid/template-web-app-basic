@@ -1,12 +1,12 @@
 
-var fs = require("fs-extra");
-var path = require("path");
+const fs = require("fs-extra");
+const path = require("path");
 
 try {
     // Query the entry
     fs.lstatSync(path.resolve("./coverage/lcov.info"));
 
-    var exec = require('child_process').exec;
+    let exec = require('child_process').exec;
 
     exec("cat ./coverage/lcov.info | ./node_modules/.bin/coveralls", function(err, stdOut, stdErr){
         console.log(stdOut);

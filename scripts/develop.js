@@ -1,16 +1,16 @@
 
-path = require("path");
-var util = require('./util');
-var httpPort = 3000;
+const path = require("path");
+const util = require('./util');
+const httpPort = 3000;
 
 
-var webpackConfig = require("../webpack.config");
-var webpack = require("webpack");
-var webpackMiddleware = require("webpack-dev-middleware");
-var compiler = webpack(webpackConfig);
+const webpackConfig = require("../webpack.config");
+const webpack = require("webpack");
+const webpackMiddleware = require("webpack-dev-middleware");
+const compiler = webpack(webpackConfig);
 
-var server;
-var webpackPlugin;
+let server;
+let webpackPlugin;
 
 util.exec("npm run build",function(){
 
@@ -30,7 +30,7 @@ function serve(){
         }
     });
 
-    var hotReloadPlugin = require("webpack-hot-middleware")(compiler);
+    let hotReloadPlugin = require("webpack-hot-middleware")(compiler);
 
     server.start(httpPort,[webpackPlugin,hotReloadPlugin]);
 

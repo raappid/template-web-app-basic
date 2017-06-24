@@ -1,10 +1,10 @@
 
-var util = require('./util');
+const util = require('./util');
 
 if(process.env.RELEASE_TYPE) //look release build
 {
 
-    var cmd = "npm version " + process.env.RELEASE_TYPE;
+    let cmd = "npm version " + process.env.RELEASE_TYPE;
 
     util.series([
 

@@ -1,12 +1,12 @@
 
-var webpack = require("webpack");
+let webpack = require("webpack");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var projectConfig = require("../project.config");
+let CopyWebpackPlugin = require('copy-webpack-plugin');
+let projectConfig = require("../project.config");
 
 module.exports = function (options) {
 
-    var prodConfig = Object.assign({},require("./common.config")(options));
+    let prodConfig = Object.assign({},require("./common.config")(options));
 
     /*************************
      * Extending Plugins

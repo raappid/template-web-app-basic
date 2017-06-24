@@ -1,9 +1,9 @@
 
 
-var del = require('del');
-var projectConfig = require('../project.config');
+const del = require('del');
+const projectConfig = require('../project.config');
 
-var paths = del.sync([
+const paths = del.sync([
     'coverage',
     projectConfig.srcDir +'/**/*.css',
     '!'+ projectConfig.srcClientDir +'/assets/fonts/**/*.css',

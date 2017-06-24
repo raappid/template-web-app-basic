@@ -6,16 +6,23 @@ describe("App", () => {
     browser.get("/");
   });
 
-  it("should have a title", () => {
+  it("should have a title", (done) => {
     let subject = browser.getTitle();
     let result  = "My Title";
-    expect(subject).toEqual(result);
+
+    subject.then((value) => {
+      expect(value).toEqual(result);
+      done();
+    });
   });
 
-  it("should have app div", () => {
+  it("should have app div", (done) => {
     let subject = element(by.id("app")).isPresent();
     let result  = true;
-    expect(subject).toEqual(result);
+    subject.then((value) => {
+      expect(value).toEqual(result);
+      done();
+    });
   });
 
   it("should say hi", () => {

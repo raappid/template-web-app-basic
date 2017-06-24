@@ -1,7 +1,7 @@
 
-var webpack = require("webpack");
+let webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-var projectConfig = require("../project.config");
+let projectConfig = require("../project.config");
 
 
 module.exports = function (options) {
@@ -10,13 +10,13 @@ module.exports = function (options) {
      * Common Entry
      **************************/
 
-    var entry = {
+    let entry = {
         'main': [
             projectConfig.srcClientDirMain
         ]
     };
 
-    if(!(options.env == "test"))
+    if(!(options.env == projectConfig.Environments.TEST))
     {
         entry.main = entry.main.concat([
             projectConfig.srcClientDirIndex,
@@ -29,16 +29,16 @@ module.exports = function (options) {
      * Common Plugins
      **************************/
 
-    var plugins = [
+    let plugins = [
         new webpack.NoErrorsPlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(),
 
     ];
 
-    if(!(options.env == "test"))
+    if(!(options.env === "test"))
     {
 
-        var htmlWebPackPlugin =   new HtmlWebpackPlugin({
+        let htmlWebPackPlugin =   new HtmlWebpackPlugin({
             template: projectConfig.srcClientDirIndex,
             chunksSortMode: 'dependency',
             metadata: options,
@@ -52,20 +52,20 @@ module.exports = function (options) {
      * Common rules
      **************************/
 
-    var typescriptLoader = {test: /\.tsx?$/,
+     let typescriptLoader = {test: /\.tsx?$/,
         loader: 'awesome-typescript-loader',
         query: {
             tsconfig: projectConfig.rootDir+"/tsconfig.json"
         }
     };
 
-    if(options.env == "test" && !options.isLocalTesting) //adding inline source map only for test node environment
+    if(options.env === "test" && !options.isLocalTesting) //adding inline source map only for test node environment
     {
         typescriptLoader.query.sourceMap = false;
         typescriptLoader.query.inlineSourceMap = true;
     }
 
-    var rules = [
+    let rules = [
 
         typescriptLoader,
 

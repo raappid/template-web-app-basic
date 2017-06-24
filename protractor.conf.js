@@ -4,8 +4,8 @@
 
 require('ts-node/register');
 
-var HtmlReporter = require('protractor-jasmine2-html-reporter');
-var projectConfig = require('./project.config');
+const HtmlReporter = require('protractor-jasmine2-html-reporter');
+const projectConfig = require('./project.config');
 
 
 module.exports.config = {

@@ -1,12 +1,12 @@
 
-var util = require('./util');
-var sass = require('node-sass');
-var path = require("path");
-var fs = require("fs-extra");
-var projectConfig = require("../project.config");
+const util = require('./util');
+const sass = require('node-sass');
+const path = require("path");
+const fs = require("fs-extra");
+const projectConfig = require("../project.config");
 
 
-util.exec("npm run clean", function (err) {
+util.series(["npm run clean","npm run lint"], function (err) {
 
     if(err)
     {
@@ -14,7 +14,7 @@ util.exec("npm run clean", function (err) {
         process.exit(1);
     }
 
-    var tasks;
+    let tasks;
 
     if(process.env.NODE_ENV === "production")
     {
@@ -51,8 +51,8 @@ util.exec("npm run clean", function (err) {
 
 function buildSASS(cb) {
 
-    var mainSassFilePath = projectConfig.srcClientDir+"/assets/styles/main.scss";
-    var outFilePath = projectConfig.srcClientDir+"/assets/styles/main.css";
+    let mainSassFilePath = projectConfig.srcClientDir+"/assets/styles/main.scss";
+    let outFilePath = projectConfig.srcClientDir+"/assets/styles/main.css";
 
     sass.render({
         file: mainSassFilePath
@@ -77,7 +77,7 @@ function buildSASS(cb) {
 
 function buildTypescript(cb,isRelease,buildAll){
 
-    var cmd = "tsc";
+    let cmd = "tsc";
 
     if(!buildAll)
     {

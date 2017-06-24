@@ -1,16 +1,16 @@
+const projectConfig = require("./project.config");
 
+let envObject = {env: process.env.NODE_ENV};
 
 switch (process.env.NODE_ENV) {
-  case 'prod':
-  case 'production':
-    module.exports = require('./webpack/prod.config')({env: 'production'});
-    break;
-  case 'test':
-  case 'testing':
-    module.exports = require('./webpack/test.config')({env: 'test'});
-    break;
-  case 'dev':
-  case 'development':
-  default:
-    module.exports = require('./webpack/dev.config')({env: 'development'});
+
+    case projectConfig.Environments.PRODUCTION:
+        module.exports = require('./webpack/prod.config')(envObject);
+        break;
+    case projectConfig.Environments.TEST:
+        module.exports = require('./webpack/test.config')(envObject);
+        break;
+    case projectConfig.Environments.DEVELOPMENT:
+    default:
+        module.exports = require('./webpack/dev.config')(envObject);
 }

@@ -1,7 +1,7 @@
 
-import {Application} from "./app/view_system";
+import {Application} from "./views/views";
 
-require("core-js/shim");
+import "core-js";
 
 let appNode:HTMLDivElement = document.getElementById("app") as HTMLDivElement;
 

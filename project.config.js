@@ -1,15 +1,23 @@
 
-var path = require("path");
+const path = require("path");
 
 const config = {};
 
-var rootDir = path.resolve("./");
+const rootDir = path.resolve("./");
 
-var srcDir = rootDir + "/src";
-var distDir = rootDir + "/dist";
+const srcDir = rootDir + "/src";
+const distDir = rootDir + "/dist";
 
-var clientDir = "client";
-var apiDir = "api";
+const clientDir = "client";
+const apiDir = "api";
+
+config.Environments = {
+
+    DEVELOPMENT:"development",
+    TEST:"test",
+    PRODUCTION:"production"
+
+};
 
 config.rootDir = rootDir;
 config.distDir = distDir;

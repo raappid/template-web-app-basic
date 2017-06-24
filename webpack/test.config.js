@@ -1,11 +1,11 @@
 
-var projectConfig = require("../project.config");
-var webpack = require("webpack");
-var CONTEXT_REPLACE_REGEX = /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/;
+let projectConfig = require("../project.config");
+let webpack = require("webpack");
+let CONTEXT_REPLACE_REGEX = /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/;
 
 module.exports = function (options) {
 
-    var testConfig = Object.assign({},require("./dev.config")(options));
+    let testConfig = Object.assign({},require("./dev.config")(options));
 
     delete testConfig.entry;
 
