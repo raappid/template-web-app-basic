@@ -10,15 +10,16 @@ if(process.env.RELEASE_TYPE) //look release build
 
         "npm test",
 
+        ["git fetch","fetch all branches"],
+
         ["git checkout master","checked out master branch"],
 
-        ["git checkout -b production","checked out production branch"],
-        ["git branch -u origin/production"],
-        ["git rebase master", "Rebasing from Master"],
+        ["git checkout production","checked out production branch"],
+        ["git merge --no-ff --no-edit production master", "merging from Master"],
 
         [cmd,"increasing version number and tagging"],
 
-        "git push --follow-tags",
+        "git push -u --follow-tags",
 
         ['git checkout master',"checked out master branch.."],
 
