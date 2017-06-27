@@ -34,6 +34,11 @@ export function start(port?:number, plugins?:Array<any>):void {
         app.use(express.static("dist/client"));
     }
 
+    app.get("/api/value", function (req, res) {
+
+        res.send(JSON.stringify("Hello From Api!"));
+    });
+
     server = app.listen(httpPort);
 
     console.log("Server started at port: " + port);

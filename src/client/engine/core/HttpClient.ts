@@ -1,8 +1,6 @@
 
-import {ajax} from "rxjs/observable/dom/ajax";
 import {Observable} from "rxjs";
 import {AjaxRequest, AjaxResponse} from "rxjs/observable/dom/AjaxObservable";
-import {Resources} from "../constants/resource-constants";
 import {IHttp} from "./interfaces/IHttp";
 
 let whatwgFetch = require("whatwg-fetch");
@@ -17,22 +15,22 @@ export class HttpClient {
         this.http = http;
     }
 
-    get(url:string, headers?:Object):Observable<any> {
+    get(url:string, headers?:Object):Observable<AjaxResponse> {
 
         return  this.http.get(url, headers).map(checkStatus);
     }
 
-    post(url:string, body?: any, headers?: Object): Observable<any> {
+    post(url:string, body?: any, headers?: Object): Observable<AjaxResponse> {
 
         return  this.http.post(url, body, headers).map(checkStatus);
     }
 
-    put(url: string, body?: any, headers?: Object): Observable<any> {
+    put(url: string, body?: any, headers?: Object): Observable<AjaxResponse> {
 
         return this.http.put(url, body, headers).map(checkStatus);
     }
 
-    patch(url:string, body?: any, headers?: Object): Observable<any> {
+    patch(url:string, body?: any, headers?: Object): Observable<AjaxResponse> {
 
         return this.http.patch(url, body, headers).map(checkStatus);
 
@@ -63,7 +61,7 @@ export class HttpClient {
 function checkStatus(response:AjaxResponse):any {
     if (response.status >= 200 && response.status < 300) {
 
-        return response.response;
+        return response;
     } else {
         let error:any = new Error(response.responseText);
         error.response = response;

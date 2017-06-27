@@ -9,6 +9,7 @@ export class Application {
     private sayHiButton:HTMLButtonElement;
     private setUserButton:HTMLButtonElement;
     private setUserFirstNameButton:HTMLButtonElement;
+    private getAPIValueButton:HTMLButtonElement;
 
     private setUserNameInput:HTMLInputElement;
     private setUserFirstNameInput:HTMLInputElement;
@@ -16,6 +17,7 @@ export class Application {
     private sayHiResponseLabel:HTMLSpanElement;
     private currentUserLabel:HTMLSpanElement;
     private firstNameLabel:HTMLSpanElement;
+    private apiValueLabel:HTMLSpanElement;
 
     /*
      * This Is an application
@@ -26,6 +28,7 @@ export class Application {
         this.sayHiButton = document.getElementById("sayHiButton") as HTMLButtonElement;
         this.setUserButton = document.getElementById("setUserButton") as HTMLButtonElement;
         this.setUserFirstNameButton = document.getElementById("setUserFirstNameButton") as HTMLButtonElement;
+        this.getAPIValueButton = document.getElementById("getAPIValueButton") as HTMLButtonElement;
 
         this.setUserNameInput = document.getElementById("setUserNameInput") as HTMLInputElement;
         this.setUserFirstNameInput = document.getElementById("setUserFirstNameInput") as HTMLInputElement;
@@ -33,6 +36,7 @@ export class Application {
         this.sayHiResponseLabel = document.getElementById("sayHiResponseLabel") as HTMLSpanElement;
         this.currentUserLabel = document.getElementById("currentUserLabel");
         this.firstNameLabel = document.getElementById("firstNameLabel");
+        this.apiValueLabel = document.getElementById("apiValueLabel");
 
     }
 
@@ -65,6 +69,10 @@ export class Application {
 
         });
 
+        appState.subscribeTo("apiValue", () => {
+            this.apiValueLabel.textContent = appState.apiValue;
+        });
+
         this.sayHiButton.addEventListener("click", () => {
             // performing an action by calling the manager
             appManager.sayHelloHi();
@@ -78,6 +86,11 @@ export class Application {
         this.setUserFirstNameButton.addEventListener("click", () => {
             // performing an action by calling the manager
             userManager.changeUserFirstName(this.setUserFirstNameInput.value);
+        });
+
+        this.getAPIValueButton.addEventListener("click", () => {
+            // performing an action by calling the manager
+            appManager.getValueFromApi();
         });
     }
 }

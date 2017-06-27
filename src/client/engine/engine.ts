@@ -1,4 +1,13 @@
 
+import "core-js/es5";
+import "core-js/es6";
+
+// importing only required operators from rxjs
+import "rxjs/add/operator/map";
+
+// importing all operators from rxjs
+// import "rxjs/Rx";
+
 // importing managers
 import {AppManager} from "./managers/AppManager";
 import {actionDispatcher} from "./core/index";
