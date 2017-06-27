@@ -6,15 +6,15 @@ export class UserModel extends ModelBase {
 
     user: IUser;
 
-    userValue:string = "userValue";
+    userFirstName:string = "";
 
     constructor(user:IUser) {
         super();
         this.user = user;
     }
 
-    @handleAction(UserActions.UPDATE_USER_VALUE)
-    handleUserValueUpdated(value:string):void {
-        this.userValue = value;
+    @handleAction(UserActions.UPDATE_USER_FIRST_NAME)
+    handleUserFirstNameUpdated(value:string):void {
+        this.userFirstName = value;
     }
 }

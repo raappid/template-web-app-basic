@@ -1,5 +1,5 @@
 
 export const UserActions = {
 
-    UPDATE_USER_VALUE:"user_actions_update_user_value"
+    UPDATE_USER_FIRST_NAME:"user_actions_update_first_name"
 };
