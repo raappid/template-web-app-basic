@@ -3,9 +3,6 @@ const util = require('./util');
 
 if(process.env.RELEASE_TYPE) //look release build
 {
-
-    let cmd = "npm version " + process.env.RELEASE_TYPE;
-
     util.series([
 
         "npm test",
@@ -55,6 +52,9 @@ else
 }
 
 function doProdMergeAndPush() {
+
+    let cmd = "npm version " + process.env.RELEASE_TYPE;
+
     util.series([
 
         ["git merge --no-ff --no-edit production master", "merging from Master"],
