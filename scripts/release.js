@@ -13,7 +13,7 @@ if(process.env.RELEASE_TYPE) //look release build
         ["git checkout master","checked out master branch"],
 
         ["git checkout -b production","checked out production branch"],
-
+        ["git branch -u origin/production"],
         ["git rebase master", "Rebasing from Master"],
 
         [cmd,"increasing version number and tagging"],
