@@ -61,7 +61,7 @@ function doProdMergeAndPush() {
 
         [cmd,"increasing version number and tagging"],
 
-        "git push -u --follow-tags",
+        "git push --follow-tags --set-upstream origin production",
 
         ['git checkout master',"checked out master branch.."],
 
