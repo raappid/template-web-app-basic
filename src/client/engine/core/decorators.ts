@@ -38,19 +38,22 @@ function buildModelProxy(model:ModelBase):any {
         set(target: any, p:string, value:any, receiver:any):boolean {
 
             let oldValue:any = target[p];
+            let newValue:any = value;
+
+            if (value instanceof ModelBase) {
+
+                let model:ModelBase = target[p];
+
+                if (model)
+                    target[p].flush();
+
+                newValue = buildModelProxy(value);
+
+            }
 
             if (process.env.NODE_ENV === "development") {
 
-                if (value instanceof ModelBase) {
-
-                    let model:ModelBase = target[p];
-
-                    if (model)
-                        target[p].flush();
-
-                    value = buildModelProxy(value);
-
-                } else if (value instanceof Object)
+                if (value instanceof Object && !(value instanceof ModelBase))
                     Object.freeze(value);
 
                 if (value instanceof Array) {
@@ -59,7 +62,7 @@ function buildModelProxy(model:ModelBase):any {
                 }
             }
 
-            target[p] = value;
+            target[p] = newValue;
 
             if (target["ed"])
                 (target["ed"] as EventDispatcher).dispatchEvent(p, value, oldValue);
