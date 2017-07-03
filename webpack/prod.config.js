@@ -40,7 +40,7 @@ module.exports = function (options) {
 
     prodConfig.module.rules.push({
         test: /\.scss$/,
-        loaders: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader','sass-loader']})
+        loaders: ExtractTextPlugin.extract({ fallback: 'style-loader', loader: ['css-loader','sass-loader']})
     });
 
 

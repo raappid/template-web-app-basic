@@ -30,7 +30,7 @@ module.exports = function (options) {
      **************************/
 
     let plugins = [
-        new webpack.NoErrorsPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(),
 
     ];
