@@ -86,7 +86,7 @@
     "generate-docs": "typedoc --options typedoc.json --exclude './tests/**/*' ./src/",
     "report-coverage": "node scripts/report-coverage.js"
   },
-  "version": "4.0.1",
+  "version": "4.0.2",
   "bugs": {
     "url": ""
   },
